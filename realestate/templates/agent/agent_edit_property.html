@@ -1,0 +1,172 @@
+{% extends 'agent/agent_base.html' %}
+{% load static %}
+
+{% block title %}Edit Property{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<div class="hero page-inner overlay" style="background-image: url('/static/images/agent_home.jpeg')">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-9 text-center mt-5">
+                <h1 class="heading text-white">Edit Property</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add spacing so the card does not touch the hero -->
+<div class="my-5"></div>
+
+<!-- Main Section -->
+<div class="section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+
+                <div class="card shadow-lg p-5 rounded-4 border-0">
+                    <h3 class="text-center mb-4 text-primary fw-bold">Update Property Details</h3>
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-warning text-center">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="POST" action="{% url 'agent_edit_property' form.id %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="row">
+
+                           
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Title *</label>
+                                <input type="text" name="title" value="{{ form.title }}" class="form-control" required>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Property Category *</label>
+                                <select name="category" class="form-select" required>
+                                    <option value="">Select Category</option>
+                                    {% for i in categories %}
+                                        <option value="{{ i.id }}"{% if form.category.id == i.id %} selected{% endif %}>{{ i.category_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Property Type *</label>
+                                <select name="property_type" class="form-select" required>
+                                    <option value="Sale" {% if form.property_type == "Sale" %}selected{% endif %}>Sale</option>
+                                    <option value="Rent" {% if form.property_type == "Rent" %}selected{% endif %}>Rent</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Description *</label>
+                                <textarea name="description" class="form-control" required>{{ form.description }}</textarea>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Price *</label>
+                                <input type="number" name="price" value="{{ form.price }}" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Bedrooms *</label>
+                                <input type="number" name="bedrooms" value="{{ form.bedrooms }}" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Bathrooms *</label>
+                                <input type="number" name="bathrooms" value="{{ form.bathrooms }}" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Area (Sq Ft) *</label>
+                                <input type="number" name="area_sqft" value="{{ form.area_sqft }}" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Property Status</label>
+                                <select name="status" class="form-select" required>
+                                    <option value="Available" {% if form.status == "Available" %}selected{% endif %}>Available</option>
+                                    <option value="Sold" {% if form.status == "Sold" %}selected{% endif %}>Sold</option>
+                                    <option value="Rented" {% if form.status == "Rented" %}selected{% endif %}>Rented</option>
+                                    <option value="Under Review" {% if form.status == "Under Review" %}selected{% endif %}>Under Review</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label fw-semibold">Video Tour</label>
+
+                                {% if form.video_tour %}
+                                    <video width="250" controls class="mb-2">
+                                        <source src="{{ form.video_tour.url }}">
+                                    </video>
+                                {% endif %}
+
+                                <input type="file" name="video_tour" class="form-control"accept="video/*">
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label fw-semibold">
+                                    Add More Property Images
+                                </label>
+
+                                <input
+                                    type="file"
+                                    name="property_images"
+                                    class="form-control"
+                                    multiple
+                                    accept="image/*">
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label fw-semibold">
+                                    Current Images
+                                </label>
+
+                                <div class="row">
+                                    {% for image in form.images.all %}
+
+                                    <div class="col-md-3 text-center">
+
+                                        <img src="{{ image.image.url }}"
+                                            class="img-fluid rounded mb-2">
+
+                                        <a href="{% url 'delete_property_image' image.id %}"
+                                        class="btn btn-sm btn-danger">
+                                        Delete
+                                        </a>
+
+                                    </div>
+
+                                    {% endfor %}
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label fw-semibold">Location *</label>
+                                <input type="text" name="location" value="{{ form.location }}" class="form-control" required>
+                            </div>
+
+
+
+                           
+                        <!-- Submit Button -->
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary px-5 py-2">Update Property</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

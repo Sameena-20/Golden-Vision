@@ -1,0 +1,109 @@
+{%extends 'admin/admin_base.html'%}
+
+{%load static%}
+
+
+{%block title%}Add Property{%endblock%}
+
+{%block content%}
+
+
+<div class="hero page-inner overlay" style="background-image: url('/static/images/admin_home.jpeg')">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-9 text-center mt-5">
+                <h1 class="heading text-white">Add Property</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <div class="card shadow-lg p-5 rounded-4 border-0">
+                    <h3 class="text-center mb-4 text-primary fw-bold">Property Registration</h3>
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-warning text-center">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Title *</label>
+                                <input type="text" name="title" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Property Category *</label>
+                                <select name="category" class="form-select" required>
+                                    <option value="">Select Category</option>
+                                    {% for i in categories %}
+                                        <option value="{{ i.id }}">{{ i.category_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Agent *</label>
+                                <select name="agent" class="form-select" required>
+                                    <option value="">Select Agent</option>
+                                    {% for i in agents %}
+                                        <option value="{{ i.id }}">{{ i.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Property Type *</label>
+                                <select name="property_type" class="form-select" required>
+                                    <option value="Sale">Sale</option>
+                                    <option value="Rent">Rent</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Property Status</label>
+                                <select name="status" class="form-select" required>
+                                    <option value="Available">Available</option>
+                                    <option value="Sold">Sold</option>
+                                    <option value="Rented">Rented</option>
+                                    <option value="Under Review">Under Review</option>
+                                </select>
+                            </div>
+
+                            
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Featured Property *</label>
+                                <select name="featured_property" class="form-select" required>
+                                    <option value="True">Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label fw-semibold" *>Location *</label>
+                                <input type="text" name="location" class="form-control" required>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-primary px-4 py-2">Add Property</button>
+                                <a href="{% url 'manage_properties' %}" class="btn btn-outline-primary px-4 py-2">Manage Properties</a>
+                            </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

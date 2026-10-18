@@ -1,0 +1,465 @@
+{% extends 'admin/admin_base.html' %}
+
+{% load static %}
+
+{% block title %}Reports & Statistics{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+
+<div
+    class="hero page-inner overlay"
+    style="background-image: url('/static/images/admin_home.jpeg')"
+>
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+
+            <div class="col-lg-9 text-center mt-5">
+
+                <h1 class="heading text-white">
+                    Reports & Statistics
+                </h1>
+
+                <nav
+                    aria-label="breadcrumb"
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                >
+                    <ol class="breadcrumb text-center justify-content-center">
+
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'admin_dashboard' %}">
+                                Home
+                            </a>
+                        </li>
+
+                        <li
+                            class="breadcrumb-item active text-white-50"
+                            aria-current="page"
+                        >
+                            Reports & Statistics
+                        </li>
+
+                    </ol>
+                </nav>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Main Section -->
+
+<div class="section">
+
+    <div class="container">
+
+        <!-- Heading -->
+
+        <div class="row justify-content-center text-center mb-5">
+
+            <div class="col-lg-8">
+
+                <h2 class="heading text-primary">
+                    Property Management Overview
+                </h2>
+
+                <p class="text-black-50">
+                    View important statistics related to properties,
+                    agents, and customer inquiries.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Export Buttons -->
+
+        <div class="row mb-5">
+
+            <div class="col-12 text-end">
+
+                <a
+                    href="{% url 'export_excel_report' %}"
+                    class="btn btn-success me-2"
+                >
+                    Export Excel
+                </a>
+
+                <a
+                    href="{% url 'export_pdf_report' %}"
+                    class="btn btn-danger"
+                >
+                    Export PDF
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Statistics Cards -->
+
+        <div class="row">
+
+            <div class="col-md-6 col-lg-3 mb-4">
+
+                <div class="card shadow-sm border-0 text-center p-4">
+
+                    <h6 class="text-muted">
+                        Total Properties
+                    </h6>
+
+                    <h2 class="text-primary fw-bold">
+                        {{ total_properties }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-3 mb-4">
+
+                <div class="card shadow-sm border-0 text-center p-4">
+
+                    <h6 class="text-muted">
+                        Total Agents
+                    </h6>
+
+                    <h2 class="text-primary fw-bold">
+                        {{ total_agents }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-3 mb-4">
+
+                <div class="card shadow-sm border-0 text-center p-4">
+
+                    <h6 class="text-muted">
+                        Total Inquiries
+                    </h6>
+
+                    <h2 class="text-primary fw-bold">
+                        {{ total_inquiries }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-3 mb-4">
+
+                <div class="card shadow-sm border-0 text-center p-4">
+
+                    <h6 class="text-muted">
+                        Featured Properties
+                    </h6>
+
+                    <h2 class="text-primary fw-bold">
+                        {{ featured_properties }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Property Statistics -->
+
+        <div class="row mt-4">
+
+            <div class="col-md-4 mb-4">
+
+                <div class="card shadow-sm border-0 text-center p-4">
+
+                    <h6 class="text-muted">
+                        Available Properties
+                    </h6>
+
+                    <h3 class="fw-bold text-success">
+                        {{ available_properties }}
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 mb-4">
+
+                <div class="card shadow-sm border-0 text-center p-4">
+
+                    <h6 class="text-muted">
+                        Sold Properties
+                    </h6>
+
+                    <h3 class="fw-bold text-danger">
+                        {{ sold_properties }}
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 mb-4">
+
+                <div class="card shadow-sm border-0 text-center p-4">
+
+                    <h6 class="text-muted">
+                        Rented Properties
+                    </h6>
+
+                    <h3 class="fw-bold text-warning">
+                        {{ rented_properties }}
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Charts -->
+
+        <div class="row mt-5">
+
+            <!-- Property Status -->
+
+            <div class="col-lg-6 mb-5">
+
+                <div class="card shadow-sm border-0 p-4">
+
+                    <h4 class="text-center text-primary mb-4">
+                        Property Status
+                    </h4>
+
+                    <canvas id="propertyStatusChart"></canvas>
+
+                </div>
+
+            </div>
+
+
+            <!-- Inquiry Status -->
+
+            <div class="col-lg-6 mb-5">
+
+                <div class="card shadow-sm border-0 p-4">
+
+                    <h4 class="text-center text-primary mb-4">
+                        Customer Inquiries
+                    </h4>
+
+                    <canvas id="inquiryStatusChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Category Chart -->
+
+        <div class="row">
+
+            <div class="col-lg-10 mx-auto">
+
+                <div class="card shadow-sm border-0 p-4">
+
+                    <h4 class="text-center text-primary mb-4">
+                        Properties by Category
+                    </h4>
+
+                    <canvas id="categoryChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- Chart.js -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+
+    // Property Status Chart
+
+    const propertyStatus = document.getElementById(
+        'propertyStatusChart'
+    );
+
+    new Chart(propertyStatus, {
+
+        type: 'pie',
+
+        data: {
+
+            labels: [
+                'Available',
+                'Sold',
+                'Rented'
+            ],
+
+            datasets: [{
+
+                data: [
+                    {{ available_properties }},
+                    {{ sold_properties }},
+                    {{ rented_properties }}
+                ]
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            plugins: {
+
+                legend: {
+                    position: 'bottom'
+                }
+
+            }
+
+        }
+
+    });
+
+
+    // Inquiry Status Chart
+
+    const inquiryStatus = document.getElementById(
+        'inquiryStatusChart'
+    );
+
+    new Chart(inquiryStatus, {
+
+        type: 'doughnut',
+
+        data: {
+
+            labels: [
+                'Pending',
+                'Replied'
+            ],
+
+            datasets: [{
+
+                data: [
+                    {{ pending_inquiries }},
+                    {{ replied_inquiries }}
+                ]
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            plugins: {
+
+                legend: {
+                    position: 'bottom'
+                }
+
+            }
+
+        }
+
+    });
+
+
+    // Category Chart
+
+    const categoryChart = document.getElementById(
+        'categoryChart'
+    );
+
+    new Chart(categoryChart, {
+
+        type: 'bar',
+
+        data: {
+
+            labels: [
+                {% for category in categories %}
+                    "{{ category.category_name }}",
+                {% endfor %}
+            ],
+
+            datasets: [{
+
+                label: 'Number of Properties',
+
+                data: [
+                    {% for category in categories %}
+                        {{ category.property_count }},
+                    {% endfor %}
+                ]
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            scales: {
+
+                y: {
+
+                    beginAtZero: true,
+
+                    ticks: {
+                        precision: 0
+                    }
+
+                }
+
+            },
+
+            plugins: {
+
+                legend: {
+                    display: false
+                }
+
+            }
+
+        }
+
+    });
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,584 @@
+
+{%extends 'public/base.html'%}
+
+{%load static%}
+{% load humanize %}
+
+<head>{%block title%}Home{%endblock%}</head>
+
+<body>
+{%block content%}
+
+
+    <div class="hero">
+      <div class="hero-slide">
+        <div
+          class="img overlay"
+          
+          style="background-image: url('/static/images/home_img_1.jpeg');">
+        ></div>
+        <div
+          class="img overlay"
+          
+          style="background-image: url('/static/images/home_img_2.jpeg');">
+        ></div>
+        <div
+          class="img overlay"
+          
+          style="background-image: url('/static/images/home_img_3.jpeg');">
+        ></div>
+      </div>
+
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-9 text-center">
+            <h2 class="heading" data-aos="fade-up">Find the place where your future begins<span>.</span></h2>
+            <p style="font-size: 20px; color: #E0E6ED; opacity: 0.85; font-weight: 500; letter-spacing: 0.5px;">Discover luxury villas • Modern apartments • Premium commercial properties</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-8">
+            <h2 class="heading text-primary mb-4">
+              Welcome to Golden Vision
+            </h2>
+
+            <p class="lead" style="font-size: 18px; color: #777e86; opacity: 0.85; font-weight: 500; letter-spacing: 0.5px;">
+              Golden Vision is a trusted Abu Dhabi real estate company dedicated to
+              helping clients find exceptional residential and commercial properties
+              across the UAE.
+            </p>
+
+            <p style="font-size: 18px; color: #777e86; opacity: 0.85; font-weight: 500; letter-spacing: 0.5px;">
+              With years of industry experience, our team provides professional
+              guidance, market expertise, and personalized service to buyers,
+              sellers, investors, and businesses. From luxury villas and modern
+              apartments to premium commercial spaces, we help turn property goals
+              into reality.
+            </p>
+
+            <p style="font-size: 18px; color: #777e86; opacity: 0.85; font-weight: 500; letter-spacing: 0.5px;">
+              At Golden Vision, we believe that every property represents more than
+              just an investment—it represents opportunity, growth, and a place to
+              build the future. Our commitment to integrity, transparency, and
+              client satisfaction has helped us establish lasting relationships with
+              homeowners, investors, and businesses throughout Abu Dhabi.
+            </p>
+
+            <p style="font-size: 18px; color: #777e86; opacity: 0.85; font-weight: 500; letter-spacing: 0.5px;">
+              Whether you are searching for your dream home, exploring investment
+              opportunities, or seeking the ideal commercial space, Golden Vision
+              delivers expert support and carefully selected properties tailored to
+              your unique needs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="section">
+      <div class="container">
+        <div class="row mb-5 align-items-center">
+          <div class="col-lg-6">
+            <h2 class="font-weight-bold text-primary heading">
+              Popular Properties
+            </h2>
+          </div>
+          <div class="col-lg-6 text-lg-end">
+            <p>
+              <a
+                href="{% url 'properties' %}"
+                target="_blank"
+                class="btn btn-primary text-white py-3 px-4"
+                >Explore properties</a
+              >
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="property-slider-wrap">
+              <div class="property-slider">
+                {% for property in featured_properties %}
+                <div class="property-item">
+                  {% with property.images.all|first as main_image %}
+                  <a href="{% url 'property_details' property.id %}" class="img">
+                    {% if main_image %}
+                        <img
+                            src="{{ main_image.image.url }}"
+                            alt="{{ property.title }}"
+                            class="img-fluid"
+                        />
+                    {% else %}
+                        <img
+                            src="{% static 'images/img_1.jpg' %}"
+                            alt="{{ property.title }}"
+                            class="img-fluid"
+                        />
+                    {% endif %}
+                </a>
+                {% endwith %}
+
+                  <div class="property-content">
+                    <div class="price mb-2">
+                      <span>{% if property.price %}
+                                AED {{ property.price|floatformat:0|intcomma }}
+                            {% else %}
+                                Price on request
+                            {% endif %}
+                        </span></div>
+                    <div>
+                      <span class="d-block mb-2 text-black-50">
+                        {{ property.location }}
+                      </span>
+                      <span class="city d-block mb-3">{{ property.title }}</span>
+
+                      <div class="specs d-flex mb-4">
+                        <span class="d-block d-flex align-items-center me-3">
+                          <span class="icon-bed me-2"></span>
+                          <span class="caption">{{ property.bedrooms|default:"—" }} beds</span>
+                        </span>
+                        <span class="d-block d-flex align-items-center">
+                          <span class="icon-bath me-2"></span>
+                          <span class="caption">{{ property.bathrooms|default:"—" }} baths</span>
+                        </span>
+                      </div>
+
+                      <a
+                        href="{% url 'property_details' property.id %}"
+                        class="btn btn-primary py-2 px-3"
+                        >See details</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                {% empty %}
+                    <div class="col-12 text-center py-5">
+                        <p class="text-muted">
+                            No featured properties are available at the moment.
+                        </p>
+                    </div>
+                {% endfor %}
+                <!-- .item -->          
+                
+              </div>
+
+              <div
+                id="property-nav"
+                class="controls"
+                tabindex="0"
+                aria-label="Carousel Navigation"
+              >
+                <span
+                  class="prev"
+                  data-controls="prev"
+                  aria-controls="property"
+                  tabindex="-1"
+                  >Prev</span
+                >
+                <span
+                  class="next"
+                  data-controls="next"
+                  aria-controls="property"
+                  tabindex="-1"
+                  >Next</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section sec-testimonials">
+      <div class="container">
+        <div class="row mb-5 align-items-center">
+          <div class="col-md-6">
+            <h2 class="font-weight-bold heading text-primary mb-4 mb-md-0">
+              Trusted by Property Buyers & Investors
+            </h2>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <div id="testimonial-nav">
+              <span class="prev" data-controls="prev">Prev</span>
+
+              <span class="next" data-controls="next">Next</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4"></div>
+        </div>
+        <div class="testimonial-slider-wrap">
+          <div class="testimonial-slider">
+            <div class="item">
+              <div class="testimonial">
+                <img
+                  src="{% static 'images/Ahmed Al Mansoori.jpeg' %}"
+                  alt="Image"
+                  class="img-fluid rounded-circle w-25 mb-4"
+                />
+                <div class="rate">
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                </div>
+                <h3 class="h5 text-primary mb-4">Ahmed Al Mansoori</h3>
+                <blockquote>
+                  <p>
+                    &ldquo;Golden Vision made the entire home-buying process smooth and stress-free.
+                    Their team understood exactly what we were looking for and helped us find the
+                    perfect family villa in Abu Dhabi. Professional, transparent, and highly
+                    recommended.&rdquo;
+                  </p>
+                </blockquote>
+                <p class="text-black-50">Villa Buyer, Abu Dhabi</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="testimonial">
+                <img
+                  src="{% static 'images/Sarah Williams.jpeg' %}"
+                  alt="Image"
+                  class="img-fluid rounded-circle w-25 mb-4"
+                />
+                <div class="rate">
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                </div>
+                <h3 class="h5 text-primary mb-4">Sarah Williams</h3>
+                <blockquote>
+                  <p>
+                    &ldquo;As an overseas investor, I needed a reliable real estate partner in the UAE.
+                    Golden Vision provided excellent market insights and guided me through every
+                    step of the investment process. Their expertise gave me complete confidence in
+                    my decision.&rdquo;
+                  </p>
+                </blockquote>
+                <p class="text-black-50">Property Investor</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="testimonial">
+                <img
+                  src="{% static 'images/Khalid Al Nuaimi.jpeg' %}"
+                  alt="Image"
+                  class="img-fluid rounded-circle w-25 mb-4"
+                />
+                <div class="rate">
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                </div>
+                <h3 class="h5 text-primary mb-4">Khalid Al Nuaimi</h3>
+                <blockquote>
+                  <p>
+                    &ldquo;The Golden Vision team helped us secure the ideal commercial space for our
+                    business expansion. Their attention to detail and understanding of the Abu Dhabi
+                    market saved us valuable time and resources.&rdquo;
+                  </p>
+                </blockquote>
+                <p class="text-black-50">Commercial Property Owner</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="testimonial">
+                <img
+                  src="{% static 'images/Maria Fernandez.jpeg' %}"
+                  alt="Image"
+                  class="img-fluid rounded-circle w-25 mb-4"
+                />
+                <div class="rate">
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                </div>
+                <h3 class="h5 text-primary mb-4">Maria Fernandez</h3>
+                <blockquote>
+                  <p>
+                    &ldquo;From the first viewing to the final paperwork, Golden Vision delivered
+                    exceptional service. The team was responsive, knowledgeable, and committed to
+                    finding a property that matched both my needs and budget.&rdquo;
+                  </p>
+                </blockquote>
+                <p class="text-black-50">Apartment Buyer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section section-4 bg-light">
+      <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+          <div class="col-lg-5">
+            <h2 class="font-weight-bold heading text-primary mb-4">
+               Why Choose Golden Vision?
+            </h2>
+            <p class="text-black-50">
+              With years of experience in Abu Dhabi's real estate market, Golden Vision
+              helps buyers, sellers, and investors make confident property decisions.
+              Our commitment to transparency, professionalism, and customer satisfaction
+              has made us a trusted name in the industry.
+            </p>
+          </div>
+        </div>
+        <div class="row justify-content-between mb-5">
+          <div class="col-lg-7 mb-5 mb-lg-0 order-lg-2">
+            <div class="img-about dots">
+              <img src="{% static 'images/hero_bg_3.jpg' %}" alt="Image" class="img-fluid" />
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="d-flex feature-h">
+              <span class="wrap-icon me-3">
+                <span class="icon-home2"></span>
+              </span>
+              <div class="feature-text">
+                <h3 class="heading">Premium Property Portfolio</h3>
+                <p class="text-black-50">
+                  Explore a carefully selected collection of luxury villas, modern apartments,
+    and commercial properties across Abu Dhabi and the UAE.
+                </p>
+              </div>
+            </div>
+
+            <div class="d-flex feature-h">
+              <span class="wrap-icon me-3">
+                <span class="icon-person"></span>
+              </span>
+              <div class="feature-text">
+                <h3 class="heading">Top Rated Agents</h3>
+                <p class="text-black-50">
+                  Our team of experienced agents is dedicated to providing personalized service and expert guidance throughout your real estate journey.
+                </p>
+              </div>
+            </div>
+
+            <div class="d-flex feature-h">
+              <span class="wrap-icon me-3">
+                <span class="icon-security"></span>
+              </span>
+              <div class="feature-text">
+                <h3 class="heading">Experienced Property Consultants</h3>
+                <p class="text-black-50">
+                  Our knowledgeable real estate professionals provide personalized guidance
+                  and market insights to help you make informed decisions.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row section-counter mt-5">
+          <div
+            class="col-6 col-sm-6 col-md-6 col-lg-3"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="counter-wrap mb-5 mb-lg-0">
+              <span class="number"
+                ><span class="countup text-primary">500</span></span
+              >
+              <span class="caption text-black-50">Properties Listed</span>
+            </div>
+          </div>
+          <div
+            class="col-6 col-sm-6 col-md-6 col-lg-3"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <div class="counter-wrap mb-5 mb-lg-0">
+              <span class="number"
+                ><span class="countup text-primary">300</span></span
+              >
+              <span class="caption text-black-50">Satisfied Clients</span>
+            </div>
+          </div>
+          <div
+            class="col-6 col-sm-6 col-md-6 col-lg-3"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
+            <div class="counter-wrap mb-5 mb-lg-0">
+              <span class="number"
+                ><span class="countup text-primary">10</span></span
+              >
+              <span class="caption text-black-50">Years of Experience</span>
+            </div>
+          </div>
+          <div
+            class="col-6 col-sm-6 col-md-6 col-lg-3"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
+            <div class="counter-wrap mb-5 mb-lg-0">
+              <span class="number"
+                ><span class="countup text-primary">25</span></span
+              >
+              <span class="caption text-black-50">Professional Agents</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="row justify-content-center footer-cta" data-aos="fade-up">
+        <div class="col-lg-7 mx-auto text-center">
+          <h2 class="mb-4">Be Part of Our Growing Team</h2>
+          <p class="text-black-50 mb-4">
+            Join Golden Vision and help clients discover exceptional real estate opportunities across Abu Dhabi and the UAE.
+          </p>
+          <p>
+            <a
+              href="{% url 'careers' %}"
+              target="_parent"
+              class="btn btn-primary text-white py-3 px-4"
+              >View Career Opportunities</a
+            >
+          </p>
+        </div>
+        <!-- /.col-lg-7 -->
+      </div>
+      <!-- /.row -->
+    </div>
+
+    <div class="section section-5 bg-light">
+      <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+          <div class="col-lg-6 mb-5">
+            <h2 class="font-weight-bold heading text-primary mb-4">
+              Meet Our Experts
+            </h2>
+            <p class="text-black-50">
+              Our experienced real estate professionals are committed to helping clients
+              navigate the UAE property market with confidence. From luxury residences
+              to commercial investments, our team provides trusted guidance every step
+              of the way.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
+            <div class="h-100 person">
+              <img
+                src="{% static 'images/Tariq Al-Hashemi.jpeg' %}"
+                alt="Image"
+                class="img-fluid"
+              />
+
+              <div class="person-contents">
+                <h2 class="mb-0"><a href="#">Tariq Al-Hashemi</a></h2>
+                <span class="meta d-block mb-3">Senior Property Consultant</span>
+                <p>
+                  Specializing in luxury villas and premium residential communities across
+                  Abu Dhabi, Tariq helps clients find properties that match their lifestyle
+                  and investment goals.
+                </p>
+
+                <ul class="social list-unstyled list-inline dark-hover">
+                  <li class="list-inline-item">
+                    <a href="#"><span class="icon-twitter"></span></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#"><span class="icon-facebook"></span></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#"><span class="icon-linkedin"></span></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#"><span class="icon-instagram"></span></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
+            <div class="h-100 person">
+              <img
+                src="{% static 'images/Layla Mansoor.jpeg' %}"
+                alt="Image"
+                class="img-fluid"
+              />
+
+              <div class="person-contents">
+                <h2 class="mb-0"><a href="#">Layla Mansoor</a></h2>
+                <span class="meta d-block mb-3">Investment Property Advisor</span>
+                <p>
+                  With extensive knowledge of the UAE real estate market, Layla assistsinvestors in identifying high-potential opportunities and long-term value.
+                </p>
+
+                <ul class="social list-unstyled list-inline dark-hover">
+                  <li class="list-inline-item">
+                    <a href="#"><span class="icon-twitter"></span></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#"><span class="icon-facebook"></span></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#"><span class="icon-linkedin"></span></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#"><span class="icon-instagram"></span></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
+            <div class="h-100 person">
+              <img
+                src="{% static 'images/Zaid Al-Maktari.jpeg' %}"
+                alt="Image"
+                class="img-fluid"
+              />
+
+              <div class="person-contents">
+                <h2 class="mb-0"><a href="#">Zaid Al-Maktari</a></h2>
+                <span class="meta d-block mb-3">Commercial Real Estate Specialist</span>
+                <p>
+                  Zaid works closely with businesses seeking office, retail, and commercial spaces, delivering tailored property solutions for growth and success.
+                </p>
+
+                <ul class="social list-unstyled list-inline dark-hover">
+                  <li class="list-inline-item">
+                    <a href="#"><span class="icon-twitter"></span></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#"><span class="icon-facebook"></span></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#"><span class="icon-linkedin"></span></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#"><span class="icon-instagram"></span></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+</body>

@@ -1,0 +1,135 @@
+{% extends 'public/base.html' %}
+{% load static %}
+
+{% block title %}Property Details{% endblock %}
+
+{% block content %}
+
+<div
+  class="hero page-inner overlay"
+  style="background-image: url('/static/images/hero_bg_3.jpg')"
+>
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-9 text-center mt-5">
+        <h1 class="heading" data-aos="fade-up">
+          {{ property.title }}
+        </h1>
+
+        <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
+          <ol class="breadcrumb text-center justify-content-center">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'properties' %}">Properties</a></li>
+            <li class="breadcrumb-item active text-white-50" aria-current="page">
+              {{ property.title }}
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="row justify-content-between">
+
+      <div class="col-lg-7">
+        <div class="img-property-slide-wrap">
+          <div class="img-property-slide">
+
+            
+            {% with property.images.all|first as main_image %}
+              {% if main_image %}
+                <img 
+                  src="{{ main_image.image.url }}" 
+                  alt="{{ property.title }}" 
+                  class="img-fluid"
+                  style="width: 100%; height: auto; object-fit: cover;"
+                />
+              {% else %}
+                <img 
+                  src="{% static 'images/img_1.jpg' %}" 
+                  alt="{{ property.title }}" 
+                  class="img-fluid"
+                  style="width: 100%; height: auto; object-fit: cover;"
+                />
+              {% endif %}
+            {% endwith %}
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <h2 class="heading text-primary">{{ property.title }}</h2>
+        <p class="meta">{{ property.location }}</p>
+        <p class="text-black-50">{{ property.description }}</p>
+
+        <div class="d-block agent-box p-5 text-center">
+
+  <div class="img mb-4">
+    {% if property.agent and property.agent.profile_photo %}
+      <img 
+        src="{{ property.agent.profile_photo.url }}" 
+        alt="{{ property.agent.name }}" 
+        class="img-fluid rounded-circle"
+        style="width: 120px; height: 120px; object-fit: cover;"
+      />
+    {% else %}
+      <img 
+        src="{% static 'images/person_2-min.jpg' %}" 
+        alt="Agent" 
+        class="img-fluid rounded-circle"
+        style="width: 120px; height: 120px; object-fit: cover;"
+      />
+    {% endif %}
+  </div>
+
+  <div class="text">
+    <h3 class="mb-0">
+      {% if property.agent %}
+        {{ property.agent.name }}
+      {% else %}
+        Our Property Consultant
+      {% endif %}
+    </h3>
+
+    <div class="meta mb-3">
+      {% if property.agent and property.agent.designation %}
+        {{ property.agent.designation }}
+      {% else %}
+        Real Estate Specialist
+      {% endif %}
+    </div>
+
+    <p>
+      {% if property.agent and property.agent.bio %}
+        {{ property.agent.bio }}
+      {% else %}
+        Contact us to learn more about this property and explore similar options.
+      {% endif %}
+    </p>
+
+    <ul class="list-unstyled social dark-hover d-flex justify-content-center">
+      <li class="me-1"><a href="{{ property.agent.instagram_link }}" target="_blank"><span class="icon-instagram"></span></a></li>
+      <li class="me-1"><a href="{{ property.agent.twitter_link }}" target="_blank"><span class="icon-twitter"></span></a></li>
+      <li class="me-1"><a href="{{ property.agent.facebook_link }}" target="_blank"><span class="icon-facebook"></span></a></li>
+      <li class="me-1"><a href="{{ property.agent.linkedin_link }}" target="_blank"><span class="icon-linkedin"></span></a></li>
+    </ul>
+
+    <br><br><br>
+
+    <a href="{% url 'send_property_inquiry' property.id %}" class="btn btn-primary py-2 px-3">Send Enquiry</a>
+  </div>
+
+</div>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

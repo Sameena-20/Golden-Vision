@@ -1,0 +1,135 @@
+{%extends 'agent/agent_base.html'%}
+
+{%load static%}
+
+
+{%block title%}Agent Dashboard{%endblock%}
+
+{%block content%}
+
+    <div
+      class="hero page-inner overlay"
+      style="background-image: url('/static/images/agent_home.jpeg')"
+    >
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+
+            <nav
+              aria-label="breadcrumb"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <ol class="breadcrumb text-center justify-content-center">
+                <li class="breadcrumb-item"><a href="{% url 'agent_dashboard' %}">Home</a></li>
+                <li
+                  class="breadcrumb-item active text-white-50"
+                  aria-current="page"
+                >
+                  Agent Dashboard
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <div class="section sec-testimonials">
+          <div class="container">
+              <div class="row justify-content-center text-center">
+                  <div class="col-lg-8">
+                      <h2 class="font-weight-bold heading text-primary mb-4">
+                          Welcome, Agent {{ request.user.first_name }}!
+                      </h2>
+
+                      <p class="lead text-black-50 mb-4">
+                          Welcome to your Agent Dashboard, where you can efficiently manage property
+                          listings, respond to customer inquiries, and update property details. Use the
+                          available tools to showcase properties, track client interactions, monitor
+                          inquiry requests, and maintain accurate property information. This dashboard is
+                          designed to help you stay organized, build stronger client relationships, and
+                          maximize your success in the real estate market.
+                      </p>
+                  </div>
+              </div>
+          </div>
+        </div>
+
+
+    <div class="section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="box-feature mb-4">
+              <span class="flaticon-house mb-4 d-block"></span>
+              <h3 class="text-black mb-3 font-weight-bold">
+                Assigned Properties
+              </h3>
+              <p class="text-black-50">
+                View all properties assigned to you and monitor their current status. Access property information quickly and keep listings updated for potential buyers and tenants.
+              </p>
+              <p><a href="{% url 'assigned_properties' %}" class="learn-more">Enquire Now</a></p>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+            <div class="box-feature mb-4">
+              <span class="flaticon-house-2 mb-4 d-block-3"></span>
+              <h3 class="text-black mb-3 font-weight-bold">Add Property & Images</h3>
+              <p class="text-black-50">
+                Create new property listings by adding property details, pricing, location information, and high-quality images to attract potential customers.
+              </p>
+              <p><a href="{% url 'add_property_with_image' %}" class="learn-more">Enquire Now</a></p>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="500">
+            <div class="box-feature mb-4">
+              <span class="flaticon-building mb-4 d-block"></span>
+              <h3 class="text-black mb-3 font-weight-bold">
+                Manage Properties
+              </h3>
+              <p class="text-black-50">
+                View, manage, and respond to customer inquiries regarding listed properties. Maintain effective communication and assist clients throughout their property search.
+              </p>
+              <p><a href="{% url 'agent_manage_properties' %}" class="learn-more">Enquire Now</a></p>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+            <div class="box-feature mb-4">
+              <span class="flaticon-building mb-4 d-block-3"></span>
+              <h3 class="text-black mb-3 font-weight-bold">Customer Inquiries</h3>
+              <p class="text-black-50">
+                View, manage, and respond to customer inquiries regarding listed properties. Maintain effective communication and assist clients throughout their property search.
+              </p>
+              <p><a href="{% url 'agent_manage_inquiries' %}" class="learn-more">Enquire Now</a></p>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="600">
+            <div class="box-feature mb-4">
+              <span class="flaticon-house-3 mb-4 d-block-1"></span>
+              <h3 class="text-black mb-3 font-weight-bold">Property Status</h3>
+              <p class="text-black-50">
+                Track the availability of properties by monitoring their status as Available, Sold, Rented, or Under Review. Ensure property records remain accurate at all times.
+              </p>
+              <p><a href="{% url 'agent_property_status' %}" class="learn-more">Enquire Now</a></p>
+            </div>
+          </div>
+
+          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="box-feature mb-4">
+              <span class="flaticon-house-4 mb-4 d-block"></span>
+              <h3 class="text-black mb-3 font-weight-bold">
+                Sales Summary
+              </h3>
+              <p class="text-black-50">
+                Review property sales information, transaction values, and performance statistics. Monitor completed deals and gain insights into overall sales activity.
+              </p>
+              <p><a href="{% url 'agent_sales_summary' %}" class="learn-more">Enquire Now</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    {% endblock %}

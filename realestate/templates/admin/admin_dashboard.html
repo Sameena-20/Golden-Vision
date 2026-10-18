@@ -1,0 +1,157 @@
+{%extends 'admin/admin_base.html'%}
+
+{%load static%}
+
+
+{%block title%}Admin Dashboard{%endblock%}
+
+{%block content%}
+
+    <div
+      class="hero page-inner overlay"
+      style="background-image: url('/static/images/admin_home.jpeg')"
+    >
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+
+            <nav
+              aria-label="breadcrumb"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <ol class="breadcrumb text-center justify-content-center">
+                <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Home</a></li>
+                <li
+                  class="breadcrumb-item active text-white-50"
+                  aria-current="page"
+                >
+                  Admin Dashboard
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="section sec-testimonials">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="font-weight-bold heading text-primary mb-4">
+                      Welcome, Administrator
+                    </h2>
+
+                    <p class="lead text-black-50 mb-4">
+                        Manage and monitor all aspects of Golden Vision from one central location.
+                        Review property listings, oversee agent activities, approve new properties,
+                        track customer inquiries, and ensure the platform operates smoothly.
+                        Use the dashboard tools below to efficiently manage real estate operations
+                        and maintain a seamless experience for both agents and clients.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="box-feature mb-4">
+              <span class="flaticon-house mb-4 d-block"></span>
+              <h3 class="text-black mb-3 font-weight-bold">
+                Add Admin Accounts
+              </h3>
+              <p class="text-black-50">
+                Create, update, and manage administrator accounts. Control access permissions and ensure secure management of the platform.
+              </p>
+              <p><a href="{% url 'add_admin' %}" class="learn-more">Enquire Now</a></p>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+            <div class="box-feature mb-4">
+              <span class="flaticon-house-2 mb-4 d-block-3"></span>
+              <h3 class="text-black mb-3 font-weight-bold">Add Agent Accounts</h3>
+              <p class="text-black-50">
+                Add, edit, approve, and monitor agent accounts. Maintain accurate agent information and oversee agent activities across the platform.
+              </p>
+              <p><a href="{% url 'add_agent' %}" class="learn-more">Enquire Now</a></p>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="500">
+            <div class="box-feature mb-4">
+              <span class="flaticon-building mb-4 d-block"></span>
+              <h3 class="text-black mb-3 font-weight-bold">
+                Add Property
+              </h3>
+              <p class="text-black-50">
+                Create new property listings by entering property details, pricing, location information, and images for public viewing.
+              </p>
+              <p><a href="{% url 'add_property' %}" class="learn-more">Enquire Now</a></p>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="600">
+            <div class="box-feature mb-4">
+              <span class="flaticon-house-3 mb-4 d-block-1"></span>
+              <h3 class="text-black mb-3 font-weight-bold">Manage Properties</h3>
+              <p class="text-black-50">
+                View, update, approve, or remove property listings. Ensure all property information remains accurate, complete, and up to date.
+              </p>
+              <p><a href="{% url 'manage_properties' %}" class="learn-more">Enquire Now</a></p>
+            </div>
+          </div>
+
+          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="box-feature mb-4">
+              <span class="flaticon-house-4 mb-4 d-block"></span>
+              <h3 class="text-black mb-3 font-weight-bold">
+                Add Property Categories
+              </h3>
+              <p class="text-black-50">
+                Manage property categories such as Apartments, Villas, Townhouses, Commercial Spaces, and Residential Properties for better organization.
+              </p>
+              <p><a href="{% url 'add_property_category' %}" class="learn-more">Enquire Now</a></p>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+            <div class="box-feature mb-4">
+              <span class="flaticon-building mb-4 d-block-3"></span>
+              <h3 class="text-black mb-3 font-weight-bold">Customer Inquiries</h3>
+              <p class="text-black-50">
+                Review and track customer inquiries submitted through the website. Monitor responses and ensure timely communication with potential clients.
+              </p>
+              <p><a href="{% url 'manage_inquiries' %}" class="learn-more">Enquire Now</a></p>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="500">
+            <div class="box-feature mb-4">
+              <span class="flaticon-house mb-4 d-block"></span>
+              <h3 class="text-black mb-3 font-weight-bold">
+                Featured Properties
+              </h3>
+              <p class="text-black-50">
+                Showcase exclusive and premium properties in prime locations, helping clients discover the finest real estate opportunities.
+              </p>
+              <p><a href="{% url 'manage_featured_properties' %}" class="learn-more">Enquire Now</a></p>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="600">
+            <div class="box-feature mb-4">
+              <span class="flaticon-house-1 mb-4 d-block-1"></span>
+              <h3 class="text-black mb-3 font-weight-bold">Reports & Statistics</h3>
+              <p class="text-black-50">
+                Access reports and analytics related to properties, agents, inquiries, and overall platform performance to support business decisions.
+              </p>
+              <p><a href="{% url 'reports_statistics' %}" class="learn-more">Enquire Now</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+    {% endblock %}

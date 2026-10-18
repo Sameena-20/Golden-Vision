@@ -1,0 +1,71 @@
+{% extends 'admin/admin_base.html' %}
+{% load static %}
+
+{% block title %}Edit Featured Property{% endblock %}
+
+{% block content %}
+
+<div class="hero page-inner overlay" style="background-image: url('/static/images/admin_home.jpeg')">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-9 text-center mt-5">
+                <h1 class="heading text-white">Edit Featured Property</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="my-5"></div>
+
+<div class="section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+
+                <div class="card shadow-lg p-5 rounded-4 border-0 text-center">
+
+                    <h3 class="text-danger fw-bold mb-3">Update Confirmation</h3>
+                    <p class="text-muted mb-4">You are about to update the following featured property:</p>
+
+                    
+
+                    
+                    <h4 class="fw-bold">{{ form.property_code }}</h4>
+                    <p class="mb-1"><strong>Title:</strong> {{ form.title }}</p>
+                    <p class="mb-1"><strong>Category:</strong> {{ form.category }}</p>
+                    <p class="mb-4"><strong>Location:</strong> {{ form.location }}</p>
+                    <p class="mb-4"><strong>Current Featured Property:</strong> {{ form.featured_property }}</p>
+
+                    <div class="alert alert-danger">
+                        Are you sure you want to update this featured property?
+                    </div>
+
+                    <!-- Buttons -->
+                    <form method="POST" action="{% url 'edit_featured_property' form.id %}">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-center gap-3 mt-4">
+                            <button type="submit"
+                                    name="featured_property"
+                                    value="Yes"
+                                    class="btn btn-success px-4 py-2">
+                                Yes
+                            </button>
+
+                            <!-- NO = FALSE -->
+                            <button type="submit"
+                                    name="featured_property"
+                                    value="No"
+                                    class="btn btn-danger px-4 py-2">
+                                No
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

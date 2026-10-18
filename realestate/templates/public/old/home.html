@@ -1,0 +1,46 @@
+{%extends 'public/base.html'%}
+
+{%block title%}Home{%endblock%}
+
+{%block content%}
+       
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+  <img src="static/images/home_img.jpeg" alt="Golden Vision" data-aos="fade-in">
+
+  <div class="container">
+
+    <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
+      <div class="col-xl-6 col-lg-8">
+        <h2>Find the place where your future begins<span>.</span></h2>
+        <p>Discover luxury villas • Modern apartments • Premium commercial properties</p>
+      </div>
+    </div>
+
+    <div class="row gy-4 mt-5 justify-content-center" data-aos="fade-up" data-aos-delay="200">
+
+      <div class="col-xl-2 col-md-4">
+        <div class="icon-box">
+          <i class="bi bi-camera"></i>
+          <h3><a href="{%url 'properties'%}">Explore Properties</a></h3>
+        </div>
+      </div>
+
+      <div class="col-xl-2 col-md-4">
+        <div class="icon-box">
+          <i class="bi bi-people"></i>
+          <h3><a href="{%url 'contact'%}">Contact Us</a></h3>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<!-- /Hero Section -->
+  
+ 
+    
+{%endblock%}

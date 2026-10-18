@@ -1,0 +1,65 @@
+{% extends 'admin/admin_base.html' %}
+{% load static %}
+
+{% block title %}Edit Property Category{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<div class="hero page-inner overlay" style="background-image: url('/static/images/admin_home.jpeg')">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-9 text-center mt-5">
+                <h1 class="heading text-white">Edit Property Category</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add spacing so the card does not touch the hero -->
+<div class="my-5"></div>
+
+<!-- Main Section -->
+<div class="section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+
+                <div class="card shadow-lg p-5 rounded-4 border-0">
+                    <h3 class="text-center mb-4 text-primary fw-bold">Update Category</h3>
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-warning text-center">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="POST" action="{% url 'edit_property_category' form.id %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="row">
+
+                            <!-- Category Name -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Category Name *</label>
+                                <input type="text" name="category_name" value="{{ form.category_name }}" class="form-control" required>
+                            </div>
+
+                            <br><br><br>
+
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary px-5 py-2">Update Category</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

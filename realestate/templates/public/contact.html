@@ -1,0 +1,171 @@
+
+{%extends 'public/base.html'%}
+
+{%load static%}
+
+
+{%block title%}Contact Us{%endblock%}
+
+{%block content%}
+
+
+    <div
+      class="hero page-inner overlay"
+      style="background-image: url('/static/images/hero_bg_1.jpg')"
+    >
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-9 text-center mt-5">
+            <h1 class="heading" data-aos="fade-up">Contact Us</h1>
+
+            <nav
+              aria-label="breadcrumb"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <ol class="breadcrumb text-center justify-content-center">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                <li
+                  class="breadcrumb-item active text-white-50"
+                  aria-current="page"
+                >
+                  Contact
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-lg-4 mb-5 mb-lg-0"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="contact-info">
+              <div class="address mt-2">
+                <i class="icon-room"></i>
+                <h4 class="mb-2">Location:</h4>
+                <p>
+                  ICAD 3, Mussafah<br>
+                  Abu Dhabi, UAE
+                </p>
+              </div>
+
+              <div class="open-hours mt-4">
+                <i class="icon-clock-o"></i>
+                <h4 class="mb-2">Open Hours:</h4>
+                <p>
+                  Monday - Saturday<br>
+                  9:00 AM - 6:00 PM
+                </p>
+              </div>
+
+              <div class="email mt-4">
+                <i class="icon-envelope"></i>
+                <h4 class="mb-2">Email:</h4>
+                <p>info@goldenvision.com</p>
+              </div>
+
+              <div class="phone mt-4">
+                <i class="icon-phone"></i>
+                <h4 class="mb-2">Call:</h4>
+                <p>+971 (55) 527-2909</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-warning text-center">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            <form action="" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-6 mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Your Full Name"
+                    name="full_name"
+                  />
+                </div>
+                <div class="col-6 mb-3">
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Your Email"
+                    name="email"
+                  />
+                </div>
+                <div class="col-12 mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Subject"
+                    name="subject"
+                  />
+                </div>
+                <div class="col-12 mb-3">
+                  <textarea
+                    name="message"
+                    id=""
+                    cols="30"
+                    rows="7"
+                    class="form-control"
+                    placeholder="Tell us how we can help..."
+                  ></textarea>
+                </div>
+
+                <div class="col-12">
+                  <input
+                    type="submit"
+                    value="Send Message"
+                    class="btn btn-primary"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section pt-0">
+  <div class="container">
+
+    <div class="row justify-content-center text-center mb-4">
+      <div class="col-lg-8">
+        <h2 class="heading text-primary">
+          Visit Our Office
+        </h2>
+
+        <p class="text-black-50">
+          Conveniently located in ICAD 3, Mussafah, Abu Dhabi.
+          We welcome clients looking for residential, commercial,
+          and investment property solutions.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <iframe
+          src="https://maps.google.com/maps?q=ICAD%203%20Mussafah%20Abu%20Dhabi&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          width="100%"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  {% endblock %}

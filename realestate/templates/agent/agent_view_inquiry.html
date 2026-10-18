@@ -1,0 +1,133 @@
+{% extends 'agent/agent_base.html' %}
+{% load static %}
+
+{% block title %}View Inquiry{% endblock %}
+
+{% block content %}
+
+<div class="hero page-inner overlay" style="background-image: url('/static/images/agent_home.jpeg')">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-9 text-center mt-5">
+                <h1 class="heading text-white">View Inquiry</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="my-5"></div>
+
+<div class="section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <div class="card shadow-lg p-5 rounded-4 border-0">
+
+                    <h3 class="text-primary fw-bold text-center mb-3">
+                        Inquiry Details
+                    </h3>
+
+                    <p class="text-muted text-center mb-4">
+                        Review the complete inquiry information below.
+                    </p>
+
+                    <hr>
+
+                    <h5 class="fw-bold mb-3">
+                        {{ form.inquiry_code }}
+                    </h5>
+
+                    <p>
+                        <strong>Customer Name:</strong>
+                        {{ form.full_name }}
+                    </p>
+
+                    <p>
+                        <strong>Email:</strong>
+                        {{ form.email }}
+                    </p>
+
+                    <p>
+                        <strong>Subject:</strong>
+                        {{ form.subject }}
+                    </p>
+
+                    <p>
+                        <strong>Message:</strong><br>
+                        {{ form.message }}
+                    </p>
+
+
+                    <p>
+                        <strong>Status:</strong>
+                        {{ form.status }}
+                    </p>
+
+                    {% if form.reply %}
+                    <div class="alert alert-success mt-4">
+
+                        <h5 class="mb-3">
+                            Reply Information
+                        </h5>
+
+                        <p>
+                            <strong>Handled By:</strong>
+                            {{ form.assigned_to.name }}
+                        </p>
+
+                        <p>
+                            <strong>Reply:</strong><br>
+                            {{ form.reply }}
+                        </p>
+
+                    </div>
+                    {% endif %}
+
+                    {% if form.status == 'Assigned' %}
+
+                    <div class="alert alert-warning mt-4">
+                        This inquiry has been assigned to you but not been handled yet.
+                    </div>
+
+                    <div class="d-flex justify-content-center gap-3 mt-4">
+
+                        <a href="{% url 'agent_reply_inquiry' form.id %}"
+                           class="btn btn-success px-4 py-2">
+                            Reply Now
+                        </a>
+
+
+                        <a href="{% url 'agent_manage_inquiries' %}"
+                           class="btn btn-secondary px-4 py-2">
+                            Back
+                        </a>
+
+                    </div>
+
+                    
+                    {% elif form.status == 'Replied' %}
+
+                    <div class="alert alert-success mt-4">
+                        This inquiry has been replied successfully.
+                    </div>
+
+                    <div class="d-flex justify-content-center mt-4">
+
+                        <a href="{% url 'agent_manage_inquiries' %}"
+                           class="btn btn-secondary px-4 py-2">
+                            Back
+                        </a>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

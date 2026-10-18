@@ -1,0 +1,503 @@
+
+{% extends 'public/base.html' %}
+{% load static %}
+
+{% block title %}Careers | Golden Vision{% endblock %}
+
+{% block content %}
+
+<!-- 1. Title and Hero Image -->
+<section class="careers-hero"
+         style="background-image: linear-gradient(
+                    rgba(0,0,0,0.35),
+                    rgba(0,0,0,0.35)
+                ), url('/static/images/careers_hero.jpeg');">
+
+    <div class="container">
+        <div class="careers-hero-content">
+            <p class="careers-eyebrow">YOUR FUTURE STARTS HERE</p>
+            <h2 style="color: #fff;">Grow with Golden Vision</h2>
+            <p>
+                Be part of a team that believes in people, possibilities,
+                and creating exceptional experiences.
+            </p>
+
+            <a href="#our-people" class="btn careers-light-btn">
+                Discover Life at Golden Vision
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- 2. About Our Employees -->
+<section id="our-people" class="section py-5">
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-5">
+                <p class="careers-eyebrow text-primary">
+                    OUR PEOPLE, OUR STRENGTH
+                </p>
+
+                <h2 class="careers-heading">
+                    More Than a Workplace
+                </h2>
+
+                <p class="text-muted">
+                    At Golden Vision, people are at the heart of everything
+                    we do. Every successful property journey begins with
+                    individuals who listen, understand, collaborate, and
+                    care about the people they serve.
+                </p>
+
+                <p class="text-muted">
+                    We value different perspectives, encourage the sharing
+                    of ideas, and believe that every team member can make
+                    a meaningful contribution. We aim to create an
+                    environment where people can build their skills,
+                    take on new challenges, and work towards their
+                    professional goals.
+                </p>
+
+                <p class="text-muted mb-0">
+                    Whether working with customers, supporting daily
+                    operations, or developing new ideas, every contribution
+                    helps shape the Golden Vision experience.
+                </p>
+            </div>
+
+            <!-- Employee Image Carousel -->
+            <div class="col-lg-7">
+
+                <div id="employeeCarousel"
+                     class="carousel slide careers-carousel"
+                     data-bs-ride="carousel">
+
+                    <div class="carousel-indicators">
+                        <button type="button"
+                                data-bs-target="#employeeCarousel"
+                                data-bs-slide-to="0"
+                                class="active"
+                                aria-current="true"
+                                aria-label="Slide 1"></button>
+
+                        <button type="button"
+                                data-bs-target="#employeeCarousel"
+                                data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+
+                        <button type="button"
+                                data-bs-target="#employeeCarousel"
+                                data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                    </div>
+
+                    <div class="carousel-inner rounded-4">
+
+                        <div class="carousel-item active">
+                            <img src="{% static 'images/employee1.jpeg' %}"
+                                 class="d-block w-100 careers-slide-image"
+                                 alt="Professionals collaborating at work">
+                            <div class="carousel-caption">
+                                <h5 style="color: #fff;">Working Together</h5>
+                                <p>Great experiences begin with great teamwork.</p>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="{% static 'images/employee2.jpeg' %}"
+                                 class="d-block w-100 careers-slide-image"
+                                 alt="Real estate professionals meeting">
+                            <div class="carousel-caption">
+                                <h5 style="color: #fff;">Sharing Ideas</h5>
+                                <p>Different perspectives help us grow.</p>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="{% static 'images/employee3.jpeg' %}"
+                                 class="d-block w-100 careers-slide-image"
+                                 alt="Professionals working towards shared goals">
+                            <div class="carousel-caption">
+                                <h5 style="color: #fff;">Growing Together</h5>
+                                <p>Every contribution matters.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button class="carousel-control-prev"
+                            type="button"
+                            data-bs-target="#employeeCarousel"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"
+                              aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+
+                    <button class="carousel-control-next"
+                            type="button"
+                            data-bs-target="#employeeCarousel"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon"
+                              aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- 3. Employee Benefits and Growth -->
+<section class="careers-growth-section py-5">
+    <div class="container">
+
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+
+                <p class="careers-eyebrow text-primary">
+                    GROW WITH US
+                </p>
+
+                <h2 class="careers-heading">
+                    Opportunities to Learn and Grow
+                </h2>
+
+                <p class="text-muted">
+                    A meaningful career is built through learning,
+                    collaboration, and the opportunity to take on new
+                    challenges. We believe in creating an environment
+                    that encourages professional development.
+                </p>
+
+            </div>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-4 col-md-6">
+                <div class="careers-benefit">
+                    <div class="careers-benefit-icon">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+
+                    <h5>Professional Development</h5>
+
+                    <p>
+                        Build your knowledge, strengthen your abilities,
+                        and continue developing skills relevant to your
+                        role and career ambitions.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="careers-benefit">
+                    <div class="careers-benefit-icon">
+                        <i class="bi bi-people"></i>
+                    </div>
+
+                    <h5>Teamwork and Collaboration</h5>
+
+                    <p>
+                        Exchange ideas, learn from others, and contribute
+                        to shared goals through effective communication
+                        and collaboration.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="careers-benefit">
+                    <div class="careers-benefit-icon">
+                        <i class="bi bi-lightbulb"></i>
+                    </div>
+
+                    <h5>New Challenges</h5>
+
+                    <p>
+                        Explore opportunities to take initiative, solve
+                        problems, share ideas, and broaden your
+                        professional experience.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="careers-benefit">
+                    <div class="careers-benefit-icon">
+                        <i class="bi bi-person-check"></i>
+                    </div>
+
+                    <h5>Individual Contribution</h5>
+
+                    <p>
+                        Bring your strengths and ideas to the workplace
+                        and play a meaningful role in delivering
+                        excellent customer experiences.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="careers-benefit">
+                    <div class="careers-benefit-icon">
+                        <i class="bi bi-award"></i>
+                    </div>
+
+                    <h5>Professional Excellence</h5>
+
+                    <p>
+                        Develop a responsible, customer-focused approach
+                        and work towards high standards of quality
+                        and professionalism.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="careers-benefit">
+                    <div class="careers-benefit-icon">
+                        <i class="bi bi-arrow-up-right-circle"></i>
+                    </div>
+
+                    <h5>Career Possibilities</h5>
+
+                    <p>
+                        Explore different areas of the real estate
+                        business and discover how your skills may
+                        contribute to future opportunities.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <p class="text-muted small text-center mt-4">
+            Professional development and employment benefits depend on
+            the role and the opportunities available.
+        </p>
+
+    </div>
+</section>
+
+
+<!-- 4. Send Your CV -->
+<section class="careers-apply-section py-5">
+    <div class="container">
+
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+
+                <p class="careers-eyebrow">
+                    YOUR NEXT CHAPTER
+                </p>
+
+                <h2>Ready to Join Golden Vision?</h2>
+
+                <p>
+                    We would love to hear from individuals who are
+                    passionate about their work and interested in
+                    contributing to our journey. Send us your CV and
+                    tell us a little about yourself, your experience,
+                    and the kind of opportunity you are looking for.
+                </p>
+
+                <a href="mailto:info@goldenvision.com?subject=Career%20Application%20-%20Golden%20Vision"
+                   class="btn careers-apply-btn mt-3">
+                    <i class="bi bi-envelope me-2"></i>
+                    Send Your CV
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<style>
+    .careers-hero {
+        min-height: 520px;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        position: relative;
+        color: white;
+    }
+
+    .careers-hero-content {
+        max-width: 720px;
+        padding: 90px 0;
+    }
+
+    .careers-eyebrow {
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 16px;
+    }
+
+    .careers-hero h2 {
+        font-size: clamp(2.0rem, 5vw, 4.0rem);
+        font-weight: 600;
+        line-height: 1.15;
+        margin-bottom: 20px;
+    }
+
+    .careers-hero-content > p:not(.careers-eyebrow) {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        max-width: 600px;
+        margin-bottom: 28px;
+    }
+
+    .careers-light-btn {
+        background: white;
+        color: #173b55;
+        padding: 14px 25px;
+        border-radius: 4px;
+        font-weight: 600;
+    }
+
+    .careers-light-btn:hover {
+        background: #e9eef2;
+        color: #173b55;
+    }
+
+    .careers-heading {
+        font-size: clamp(1.9rem, 3vw, 2.6rem);
+        font-weight: 700;
+        margin-bottom: 22px;
+    }
+
+    .careers-carousel {
+        overflow: hidden;
+        border-radius: 16px;
+    }
+
+    .careers-slide-image {
+        height: 440px;
+        object-fit: cover;
+    }
+
+    .careers-carousel .carousel-item {
+        position: relative;
+    }
+
+    .careers-carousel .carousel-item::after {
+        content: "";
+        position: absolute;
+        inset: 45% 0 0;
+        background: linear-gradient(transparent, rgba(0,0,0,0.75));
+        pointer-events: none;
+    }
+
+    .careers-carousel .carousel-caption {
+        z-index: 1;
+    }
+
+    .careers-carousel .carousel-caption h5 {
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+
+    .careers-growth-section {
+        background: #f6f8fa;
+    }
+
+    .careers-benefit {
+        height: 100%;
+        padding: 32px 26px;
+        background: white;
+        border-radius: 10px;
+        border: 1px solid #e8edf1;
+        transition: transform 0.25s ease,
+                    box-shadow 0.25s ease;
+    }
+
+    .careers-benefit:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.07);
+    }
+
+    .careers-benefit-icon {
+        font-size: 2rem;
+        color: #b08d57;
+        margin-bottom: 20px;
+    }
+
+    .careers-benefit h5 {
+        font-weight: 700;
+        margin-bottom: 14px;
+    }
+
+    .careers-benefit p {
+        color: #6c757d;
+        margin-bottom: 0;
+        line-height: 1.8;
+    }
+
+    .careers-apply-section {
+    background: #F5F2EC;
+    color: #243B35;
+    padding: 80px 0;
+}
+
+.careers-apply-section h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: #243B35;
+    margin-bottom: 20px;
+}
+
+.careers-apply-section .careers-eyebrow {
+    color: #A18456;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.careers-apply-section .container p:not(.careers-eyebrow) {
+    color: #5D625D;
+    line-height: 1.9;
+}
+
+.careers-apply-btn {
+    padding: 14px 30px;
+    background: #243B35;
+    border: 1px solid #243B35;
+    color: #FFFFFF;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.25s ease;
+}
+
+.careers-apply-btn:hover {
+    background: #36574D;
+    border-color: #36574D;
+    color: #FFFFFF;
+}
+
+    @media (max-width: 767px) {
+        .careers-hero {
+            min-height: 450px;
+        }
+
+        .careers-hero-content {
+            padding: 65px 12px;
+        }
+
+        .careers-slide-image {
+            height: 320px;
+        }
+    }
+</style>
+
+{% endblock %}

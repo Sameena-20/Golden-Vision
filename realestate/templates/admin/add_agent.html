@@ -1,0 +1,161 @@
+{%extends 'admin/admin_base.html'%}
+
+{%load static%}
+
+
+{%block title%}Add Agent{%endblock%}
+
+{%block content%}
+
+
+<div class="hero page-inner overlay" style="background-image: url('/static/images/admin_home.jpeg')">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-9 text-center mt-5">
+                <h1 class="heading text-white">Add Agent</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <div class="card shadow-lg p-5 rounded-4 border-0">
+                    <h3 class="text-center mb-4 text-primary fw-bold">Agent Registration</h3>
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-warning text-center">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Full Name *</label>
+                                <input type="text" name="name" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Email *</label>
+                                <input type="email" name="email" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Phone Number *</label>
+                                <input type="text" name="phone" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Role *</label>
+                                <select name="role" class="form-select" required>
+                                    <option value="Agent">Agent</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold" *>Department</label>
+                                <select name="department" class="form-select" required>
+                                    <option value="Administration">Administration</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="Leasing">Leasing</option>
+                                    <option value="Property Management">Property Management</option>
+                                    <option value="Customer Support">Customer Support</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Finance">Finance</option>
+                                    <option value="Real Estate Operations">Real Estate Operations</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Designation *</label>
+                                <select name="designation" class="form-select" required>
+                                    <option value="CEO">CEO</option>
+                                    <option value="Branch Manager">Branch Manager</option>
+                                    <option value="Operations Manager">Operations Manager</option>
+                                    <option value="System Administrator">System Administrator</option>
+                                    <option value="Administrative Executive">Administrative Executive</option>
+                                    <option value="Sales Manager">Sales Manager</option>
+                                    <option value="Senior Property Consultant">Senior Property Consultant</option>
+                                    <option value="Property Consultant">Property Consultant</option>
+                                    <option value="Sales Executive">Sales Executive</option>
+                                    <option value="Leasing Manager">Leasing Manager</option>
+                                    <option value="Leasing Consultant">Leasing Consultant</option>
+                                    <option value="Leasing Agent">Leasing Agent</option>
+                                    <option value="Property Manager">Property Manager</option>
+                                    <option value="Assistant Property Manager">Assistant Property Manager</option>
+                                    <option value="Property Coordinator">Property Coordinator</option>
+                                    <option value="Marketing Manager">Marketing Manager</option>
+                                    <option value="Marketing Executive">Marketing Executive</option>
+                                    <option value="Digital Marketing Specialist">Digital Marketing Specialist</option>
+                                    <option value="Customer Relations Executive">Customer Relations Executive</option>
+                                    <option value="Customer Service Representative">Customer Service Representative</option>
+                                    <option value="Support Coordinator">Support Coordinator</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label fw-semibold">Profile Picture</label>
+                                <input type="file" name="profile_photo" class="form-control">
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label fw-semibold">Biography</label>
+                                <textarea name="bio" rows="4" class="form-control"></textarea>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Facebook Link</label>
+                                <input type="url" name="facebook_link" class="form-control">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">LinkedIn Link</label>
+                                <input type="url" name="linkedin_link" class="form-control">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Instagram Link</label>
+                                <input type="url" name="instagram_link" class="form-control">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Twitter Link</label>
+                                <input type="url" name="twitter_link" class="form-control">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Username *</label>
+                                <input type="text" name="username" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Password *</label>
+                                <input type="password" name="password" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-12 mb-4">
+                                <label class="form-label fw-semibold">Confirm Password *</label>
+                                <input type="password" name="confirm_password" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary px-4 py-2">Add Agent</button>
+                            <a href="{% url 'manage_agents' %}" class="btn btn-outline-primary px-4 py-2">Manage Agents</a>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

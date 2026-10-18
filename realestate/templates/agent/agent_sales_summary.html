@@ -1,0 +1,195 @@
+
+{% extends 'agent/agent_base.html' %}
+{% load static %}
+
+{% block title %}Sales Summary{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<div class="hero page-inner overlay"
+     style="background-image: url('/static/images/agent_home.jpeg')">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-9 text-center mt-5">
+                <h1 class="heading text-white">Sales Summary</h1>
+                <p class="text-white">
+                    Review your sales performance and completed property deals.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sales Summary Section -->
+<div class="section py-5">
+    <div class="container">
+
+        <div class="mb-4">
+            <h3 class="fw-bold text-primary">My Sales Overview</h3>
+            <p class="text-muted">
+                Monitor your sold properties, sales value, and current listings.
+                All figures are based on your own property records.
+            </p>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="row g-4 mb-5">
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card shadow-sm border-0 rounded-4 h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between
+                                    align-items-center mb-3">
+                            <h6 class="text-muted mb-0">Properties Sold</h6>
+                            <i class="bi bi-check-circle-fill text-success fs-3"></i>
+                        </div>
+                        <h2 class="fw-bold text-success mb-0">
+                            {{ total_sold }}
+                        </h2>
+                        <p class="text-muted small mt-2 mb-0">
+                            Completed sale listings
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card shadow-sm border-0 rounded-4 h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between
+                                    align-items-center mb-3">
+                            <h6 class="text-muted mb-0">Total Sales Value</h6>
+                            <i class="bi bi-currency-exchange text-primary fs-3"></i>
+                        </div>
+                        <h3 class="fw-bold text-primary mb-0">
+                            AED {{ total_sales_value|floatformat:2 }}
+                        </h3>
+                        <p class="text-muted small mt-2 mb-0">
+                            Combined listed prices of sold properties
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card shadow-sm border-0 rounded-4 h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between
+                                    align-items-center mb-3">
+                            <h6 class="text-muted mb-0">Available Properties</h6>
+                            <i class="bi bi-house-door-fill text-info fs-3"></i>
+                        </div>
+                        <h2 class="fw-bold text-info mb-0">
+                            {{ total_available }}
+                        </h2>
+                        <p class="text-muted small mt-2 mb-0">
+                            Properties currently available
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="card shadow-sm border-0 rounded-4 h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between
+                                    align-items-center mb-3">
+                            <h6 class="text-muted mb-0">Properties Rented</h6>
+                            <i class="bi bi-key-fill text-warning fs-3"></i>
+                        </div>
+                        <h2 class="fw-bold text-warning mb-0">
+                            {{ total_rented }}
+                        </h2>
+                        <p class="text-muted small mt-2 mb-0">
+                            Properties marked as rented
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Sold Properties Table -->
+        <div class="card shadow-lg p-4 rounded-4 border-0">
+
+            <div class="mb-4">
+                <h4 class="fw-bold text-primary">Completed Sale Listings</h4>
+                <p class="text-muted mb-0">
+                    Details of properties currently marked as Sold.
+                </p>
+            </div>
+
+            {% if sold_properties %}
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle">
+
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Property Code</th>
+                            <th>Property Title</th>
+                            <th>Property Type</th>
+                            <th>Location</th>
+                            <th>Listed Price</th>
+                            <th>Sold Status</th>
+                            <th>Listed On</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for i in sold_properties %}
+                        <tr>
+                            <td>{{ i.property_code }}</td>
+                            <td>{{ i.title }}</td>
+                            <td>{{ i.property_type }}</td>
+                            <td>{{ i.location }}</td>
+
+                            <td>
+                                {% if i.price != None %}
+                                    AED {{ i.price|floatformat:2 }}
+                                {% else %}
+                                    —
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                <span class="badge bg-success">Sold</span>
+                            </td>
+
+                            <td>{{ i.created_at|date:"d M Y" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+
+            {% else %}
+                <div class="text-center py-5">
+                    <i class="bi bi-clipboard-data text-muted"
+                       style="font-size: 3rem;"></i>
+
+                    <h5 class="text-muted mt-3">
+                        No Completed Sales Yet
+                    </h5>
+
+                    <p class="text-muted">
+                        Properties marked as Sold will appear here.
+                    </p>
+                </div>
+            {% endif %}
+
+        </div>
+
+        <!-- Back Button -->
+        <div class="text-center mt-4">
+            <a href="{% url 'agent_dashboard' %}"
+               class="btn btn-outline-primary px-4 py-2">
+                Back to Dashboard
+            </a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

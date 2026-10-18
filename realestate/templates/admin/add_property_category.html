@@ -1,0 +1,70 @@
+{%extends 'admin/admin_base.html'%}
+
+{%load static%}
+
+
+{%block title%}Add Property Category{%endblock%}
+
+{%block content%}
+
+
+<div class="hero page-inner overlay" style="background-image: url('/static/images/admin_home.jpeg')">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-9 text-center mt-5">
+                <h1 class="heading text-white">Add Property Category</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <div class="card shadow-lg p-5 rounded-4 border-0">
+                    <h3 class="text-center mb-4 text-primary fw-bold">Category Registration</h3>
+                    
+                    <br><br>
+
+                    <p class="text-center text-muted mb-4">
+                        Create and manage property categories to organize listings efficiently.
+                        Categories help classify properties such as Apartments, Villas,
+                        Commercial Spaces, Townhouses, and Residential Properties, making it
+                        easier for agents and customers to browse and search listings.
+                    </p>
+
+                    <br><br><br>
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-warning text-center">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Category Name *</label>
+                                <input type="text" name="category_name" class="form-control" required>
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary px-4 py-2">Add Category</button>
+                            <a href="{% url 'manage_property_categories' %}" class="btn btn-outline-primary px-4 py-2">Manage Property Categories</a>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

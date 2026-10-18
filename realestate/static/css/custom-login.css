@@ -1,0 +1,220 @@
+/* ===== FINAL OVERRIDES (LOAD LAST) =====
+
+.login-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 80vh !important;
+    background-color: #f5f1e7 !important;
+}
+
+.login-card {
+    background-color: #e9e2d0 !important;
+    padding: 60px 40px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15) !important;
+    max-width: 450px !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+}
+
+.lock-icon {
+    width: 300px !important;
+    height: 300px !important;
+}
+
+.login-input {
+    border-radius: 8px !important;
+    padding: 14px !important;
+    font-size: 1rem !important;
+}
+
+.login-btn {
+    background-color: #5c4033 !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    padding: 12px !important;
+    width: 100% !important;
+    border: none !important;
+    font-size: 1rem !important;
+}
+
+.login-btn:hover {
+    background-color: #3b2f2f !important;
+}
+
+.forgot-link {
+    display: block !important;
+    margin-top: 15px !important;
+    color: #5c4033 !important;
+    text-decoration: none !important;
+}
+
+.forgot-link:hover {
+    text-decoration: underline !important;
+}
+
+.messages {
+    margin-bottom: 20px !important;
+    padding: 10px !important;
+    border-radius: 8px !important;
+    background-color: #f8d7da !important;
+    color: #842029 !important;
+    border: 1px solid #f5c2c7 !important;
+    font-weight: bold !important;
+} */
+
+
+/* Login Page */
+/* LOGIN PAGE */
+
+.login-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:80px 20px;
+}
+
+.login-card{
+    background:#ffffff;
+    width:450px;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+    text-align:center;
+}
+
+/* title */
+
+.login-title{
+    color:#00204a;
+    font-size:32px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.login-subtitle{
+    color:#777;
+    margin-bottom:25px;
+}
+
+/* labels */
+
+.login-card .form-label{
+    display:block;
+    text-align:left;
+    margin-bottom:6px;
+    font-weight:500;
+}
+
+/* inputs */
+
+.custom-input{
+    width:100%;
+    height:48px !important;
+    border-radius:8px !important;
+    font-size:15px;
+}
+
+/* button */
+
+.login-btn{
+    width:100%;
+    height:48px;
+    border:none;
+    border-radius:8px;
+    background:#cda45e;
+    color:white;
+    font-weight:600;
+    margin-top:10px;
+}
+
+.login-btn:hover{
+    background:#b88d46;
+    color:white;
+}
+
+/* forgot password */
+
+.forgot-link{
+    display:block;
+    margin-top:15px;
+    text-decoration:none;
+    color:#00204a;
+}
+
+.forgot-link:hover{
+    text-decoration:underline;
+}
+
+/* messages */
+
+.messages{
+    background:#f8d7da;
+    color:#842029;
+    border:1px solid #f5c2c7;
+    padding:10px;
+    border-radius:8px;
+    margin-bottom:20px;
+}
+
+
+/* Admin Dashboard Hero */
+
+.admin-hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.admin-hero-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.admin-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: rgba(0, 0, 0, 0.5);
+
+    z-index: 1;
+}
+
+.admin-hero-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 2;
+}
+
+
+.table-hover tbody tr:hover {
+    background-color: #f5f1e7 !important;
+}
+
+.table-primary {
+    background-color: #00204a !important;
+    color: white !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: #00204a !important;
+    color: white !important;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545 !important;
+    color: white !important;
+}

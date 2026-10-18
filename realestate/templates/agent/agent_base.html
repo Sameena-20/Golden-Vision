@@ -1,0 +1,190 @@
+{%load static%}
+
+
+
+<!-- /*
+* Template Name: Property
+* Template Author: Untree.co
+* Template URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Untree.co" />
+    <link rel="shortcut icon" href="{% static 'images/golden_vision.jpeg' %}" />
+
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap5" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/tiny-slider.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/custom-login.css' %}">
+
+
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+          <span class="icofont-close js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <nav class="site-nav">
+      <div class="container">
+        <div class="menu-bg-wrap">
+          <div class="site-navigation">
+            <a class="navbar-brand" href="#">
+              <img src="{% static 'images/golden_vision.jpeg' %}" alt="Golden Vision Logo" width="45" height="45" class="d-inline-block rounded-circle" style="object-fit: cover;">
+              <span class="fw-bold text-gold text-white">Golden Vision</span>
+            </a>
+            <ul
+              class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
+            >
+              <li class="active"><a href="{% url 'agent_dashboard' %}">Home</a></li>
+              
+              <a href="{% url 'logout' %}" class="btn btn-primary py-2 px-3">Logout</a>
+            </ul>
+
+            <a
+              href="#"
+              class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+              data-toggle="collapse"
+              data-target="#main-navbar"
+            >
+              <span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+
+
+
+
+    {% block content %}
+    {% endblock %}
+
+    
+
+     <div class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="widget">
+              <h3>Contact</h3>
+              <address>ICAD 3, Mussafah, Abu Dhabi, UAE</address>
+              <ul class="list-unstyled links">
+                <li><a href="tel://971555272909">+971(55)-527-2909</a></li>
+                <li><a href="tel://971555272909">+971(55)-527-2909</a></li>
+                <li>
+                  <a href="mailto:info@goldenvision.com">info@goldenvision.com</a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.widget -->
+          </div>
+          <!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <div class="widget">
+              <h3>Sources</h3>
+              <ul class="list-unstyled float-start links">
+                <li><a href="{% url 'about' %}">About us</a></li>
+                <li><a href="{% url 'services' %}">Services</a></li>
+                <li><a href="{% url 'properties' %}">Properties</a></li>
+                <li><a href="{% url 'contact' %}">Contact us</a></li>
+              </ul>
+            </div>
+            <!-- /.widget -->
+          </div>
+          <!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <div class="widget">
+              <h3>Follow Us</h3>
+              <p class="mb-0">
+                Follow us on our social media platforms to stay updated with the latest news, offers, and property listings. Connect with us and be part of our growing community!
+
+              <ul class="list-unstyled social">
+                <li>
+                  <a href="#"><span class="icon-instagram"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-twitter"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-facebook"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-linkedin"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-pinterest"></span></a>
+                </li>
+                <li>
+                  <a href="#"><span class="icon-dribbble"></span></a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.widget -->
+          </div>
+          <!-- /.col-lg-4 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row mt-5">
+          <div class="col-12 text-center">
+            <!-- 
+              **==========
+              NOTE: 
+              Please don't remove this copyright link unless you buy the license here https://untree.co/license/  
+              **==========
+            -->
+
+            <p>
+              Copyright &copy;
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+               Golden Vision. All rights reserved. All rights reserved.</p>
+            
+          </div>
+        </div>
+      </div>
+      <!-- /.container -->
+    </div>
+    <!-- /.site-footer -->
+
+    <!-- Preloader -->
+    <div id="overlayer"></div>
+    <div class="loader">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/tiny-slider.js' %}"></script>
+    <script src="{% static 'js/aos.js' %}"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
+    <script src="{% static 'js/counter.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+  </body>
+</html>

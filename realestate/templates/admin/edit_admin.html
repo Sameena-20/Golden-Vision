@@ -1,0 +1,175 @@
+{% extends 'admin/admin_base.html' %}
+{% load static %}
+
+{% block title %}Edit Admin{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<div class="hero page-inner overlay" style="background-image: url('/static/images/admin_home.jpeg')">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-9 text-center mt-5">
+                <h1 class="heading text-white">Edit Admin</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add spacing so the card does not touch the hero -->
+<div class="my-5"></div>
+
+<!-- Main Section -->
+<div class="section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+
+                <div class="card shadow-lg p-5 rounded-4 border-0">
+                    <h3 class="text-center mb-4 text-primary fw-bold">Update Admin Details</h3>
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-warning text-center">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="POST" action="{% url 'edit_admin' form.id %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="row">
+
+                            <!-- Full Name -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Full Name</label>
+                                <input type="text" name="name" value="{{ form.name }}" class="form-control" required>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Email</label>
+                                <input type="email" name="email" value="{{ form.email }}" class="form-control" required>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Phone Number</label>
+                                <input type="text" name="phone" value="{{ form.phone }}" class="form-control" required>
+                            </div>
+
+                            <!-- Role -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Role</label>
+                                <select name="role" class="form-select" required>
+                                    <option value="Admin" {% if form.role == "Admin" %}selected{% endif %}>Admin</option>
+                                    <option value="Agent" {% if form.role == "Agent" %}selected{% endif %}>Agent</option>
+                                </select>
+                            </div>
+
+                            <!-- Department -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Department</label>
+                                <select name="department" class="form-select">
+                                    <option value="Administration" {% if form.department == "Administration" %}selected{% endif %}>Administration</option>
+                                    <option value="Sales" {% if form.department == "Sales" %}selected{% endif %}>Sales</option>
+                                    <option value="Leasing" {% if form.department == "Leasing" %}selected{% endif %}>Leasing</option>
+                                    <option value="Property Management" {% if form.department == "Property Management" %}selected{% endif %}>Property Management</option>
+                                    <option value="Customer Support" {% if form.department == "Customer Support" %}selected{% endif %}>Customer Support</option>
+                                    <option value="Marketing" {% if form.department == "Marketing" %}selected{% endif %}>Marketing</option>
+                                    <option value="Finance" {% if form.department == "Finance" %}selected{% endif %}>Finance</option>
+                                    <option value="Real Estate Operations" {% if form.department == "Real Estate Operations" %}selected{% endif %}>Real Estate Operations</option>
+                                </select>
+                            </div>
+
+                            <!-- Designation -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Designation</label>
+                                <select name="designation" class="form-select">
+                                    <option value="CEO" {% if form.designation == "CEO" %}selected{% endif %}>CEO</option>
+                                    <option value="Branch Manager" {% if form.designation == "Branch Manager" %}selected{% endif %}>Branch Manager</option>
+                                    <option value="Operations Manager" {% if form.designation == "Operations Manager" %}selected{% endif %}>Operations Manager</option>
+                                    <option value="System Administrator" {% if form.designation == "System Administrator" %}selected{% endif %}>System Administrator</option>
+                                    <option value="Administrative Executive" {% if form.designation == "Administrative Executive" %}selected{% endif %}>Administrative Executive</option>
+
+                                    <option value="Sales Manager" {% if form.designation == "Sales Manager" %}selected{% endif %}>Sales Manager</option>
+                                    <option value="Senior Property Consultant" {% if form.designation == "Senior Property Consultant" %}selected{% endif %}>Senior Property Consultant</option>
+                                    <option value="Property Consultant" {% if form.designation == "Property Consultant" %}selected{% endif %}>Property Consultant</option>
+                                    <option value="Sales Executive" {% if form.designation == "Sales Executive" %}selected{% endif %}>Sales Executive</option>
+
+                                    <option value="Leasing Manager" {% if form.designation == "Leasing Manager" %}selected{% endif %}>Leasing Manager</option>
+                                    <option value="Leasing Consultant" {% if form.designation == "Leasing Consultant" %}selected{% endif %}>Leasing Consultant</option>
+                                    <option value="Leasing Agent" {% if form.designation == "Leasing Agent" %}selected{% endif %}>Leasing Agent</option>
+
+                                    <option value="Property Manager" {% if form.designation == "Property Manager" %}selected{% endif %}>Property Manager</option>
+                                    <option value="Assistant Property Manager" {% if form.designation == "Assistant Property Manager" %}selected{% endif %}>Assistant Property Manager</option>
+                                    <option value="Property Coordinator" {% if form.designation == "Property Coordinator" %}selected{% endif %}>Property Coordinator</option>
+
+                                    <option value="Marketing Manager" {% if form.designation == "Marketing Manager" %}selected{% endif %}>Marketing Manager</option>
+                                    <option value="Marketing Executive" {% if form.designation == "Marketing Executive" %}selected{% endif %}>Marketing Executive</option>
+                                    <option value="Digital Marketing Specialist" {% if form.designation == "Digital Marketing Specialist" %}selected{% endif %}>Digital Marketing Specialist</option>
+
+                                    <option value="Customer Relations Executive" {% if form.designation == "Customer Relations Executive" %}selected{% endif %}>Customer Relations Executive</option>
+                                    <option value="Customer Service Representative" {% if form.designation == "Customer Service Representative" %}selected{% endif %}>Customer Service Representative</option>
+                                    <option value="Support Coordinator" {% if form.designation == "Support Coordinator" %}selected{% endif %}>Support Coordinator</option>
+                                </select>
+                            </div>
+
+                            <!-- Profile Picture -->
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label fw-semibold">Profile Picture</label>
+                                <input type="file" name="profile_photo" class="form-control">
+
+                                {% if form.profile_photo %}
+                                    <img src="{{ form.profile_photo.url }}" class="img-thumbnail mt-2" width="120">
+                                {% endif %}
+                            </div>
+
+                            <!-- Biography -->
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label fw-semibold">Biography</label>
+                                <textarea name="bio" rows="4" class="form-control">{{ form.bio }}</textarea>
+                            </div>
+
+                            <!-- Social Links -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Facebook Link</label>
+                                <input type="url" name="facebook_link" value="{{ form.facebook_link }}" class="form-control">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">LinkedIn Link</label>
+                                <input type="url" name="linkedin_link" value="{{ form.linkedin_link }}" class="form-control">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Instagram Link</label>
+                                <input type="url" name="instagram_link" value="{{ form.instagram_link }}" class="form-control">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Twitter Link</label>
+                                <input type="url" name="twitter_link" value="{{ form.twitter_link }}" class="form-control">
+                            </div>
+
+                            <!-- Username -->
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label fw-semibold">Username</label>
+                                <input type="text" name="username" value="{{ form.username }}" class="form-control">
+                            </div>
+
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary px-5 py-2">Update Admin</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

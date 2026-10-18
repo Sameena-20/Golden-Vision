@@ -1,0 +1,289 @@
+{%extends 'public/base.html'%}
+
+{%load static%}
+
+
+{%block title%}About Us{%endblock%}
+
+{%block content%}
+
+    <div
+      class="hero page-inner overlay"
+      style="background-image: url('/static/images/hero_bg_3.jpg')"
+      
+    >
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-9 text-center mt-5">
+            <h1 class="heading" data-aos="fade-up">About</h1>
+
+            <nav
+              aria-label="breadcrumb"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <ol class="breadcrumb text-center justify-content-center">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                <li
+                  class="breadcrumb-item active text-white-50"
+                  aria-current="page"
+                >
+                  About
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <div class="row text-left mb-5">
+          <div class="col-12">
+            <h2 class="font-weight-bold heading text-primary mb-4">About Us</h2>
+          </div>
+          <div class="col-lg-6">
+            <p class="text-black-50">
+              Golden Vision is a trusted real estate company based in Abu Dhabi,
+              dedicated to helping individuals, families, and investors find the
+              right property solutions across the UAE.
+            </p>
+            <p class="text-black-50">
+              With years of experience in the real estate industry, we specialize
+              in residential, commercial, and investment properties. Our team is
+              committed to delivering professional guidance, market expertise,
+              and personalized service throughout every stage of the property journey.
+            </p>
+            <p class="text-black-50">
+              At Golden Vision, we understand that every client has unique goals and
+              expectations. That is why we take a personalized approach to every
+              transaction, ensuring that each recommendation aligns with our clients'
+              lifestyle, business objectives, and investment plans.
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <p class="text-black-50">
+              Whether you are purchasing your first home, expanding your investment
+              portfolio, or searching for commercial opportunities, Golden Vision
+              provides reliable support and transparent advice tailored to your goals.
+            </p>
+            <p class="text-black-50">
+              Our mission is to build long-term relationships through trust,
+              integrity, and exceptional customer service while helping clients
+              make confident real estate decisions.
+            </p>
+            <p class="text-black-50">
+              Backed by local market knowledge and a commitment to excellence, we
+              continuously strive to deliver outstanding results while maintaining the
+              highest standards of professionalism, transparency, and customer
+              satisfaction.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section pt-0">
+      <div class="container">
+        <div class="row justify-content-between mb-5">
+          <div class="col-lg-7 mb-5 mb-lg-0 order-lg-2">
+            <div class="img-about dots">
+              <img src="{% static 'images/hero_bg_3.jpg' %}" alt="Image" class="img-fluid" />
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="d-flex feature-h">
+              <span class="wrap-icon me-3">
+                <span class="icon-home2"></span>
+              </span>
+              <div class="feature-text">
+                <h3 class="heading">Trusted Property Solutions</h3>
+                <p class="text-black-50">
+                  We offer carefully selected residential, commercial, and investment properties that meet the highest standards of quality and value.
+                </p>
+              </div>
+            </div>
+
+            <div class="d-flex feature-h">
+              <span class="wrap-icon me-3">
+                <span class="icon-person"></span>
+              </span>
+              <div class="feature-text">
+                <h3 class="heading">Experienced Professionals</h3>
+                <p class="text-black-50">
+                  Our knowledgeable real estate consultants provide personalized guidance, helping clients make informed decisions with confidence.
+                </p>
+              </div>
+            </div>
+
+            <div class="d-flex feature-h">
+              <span class="wrap-icon me-3">
+                <span class="icon-security"></span>
+              </span>
+              <div class="feature-text">
+                <h3 class="heading">Transparent & Secure</h3>
+                <p class="text-black-50">
+                  We believe in honest communication, ethical business practices, and a seamless property experience from inquiry to completion.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section pt-0">
+      <div class="container">
+        <div class="row justify-content-between mb-5">
+          <div class="col-lg-7 mb-5 mb-lg-0">
+            <div class="img-about dots">
+              <img src="{% static 'images/hero_bg_2.jpg' %}" alt="Image" class="img-fluid" />
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="d-flex feature-h">
+              <span class="wrap-icon me-3">
+                <span class="icon-home2"></span>
+              </span>
+              <div class="feature-text">
+                <h3 class="heading">Personalized Service</h3>
+                <p class="text-black-50">
+                  Every client receives dedicated attention and tailored recommendations based on their unique property needs, goals, and budget.
+                </p>
+              </div>
+            </div>
+
+            <div class="d-flex feature-h">
+              <span class="wrap-icon me-3">
+                <span class="icon-person"></span>
+              </span>
+              <div class="feature-text">
+                <h3 class="heading">Market Knowledge</h3>
+                <p class="text-black-50">
+                   Our team stays informed about the latest market trends and opportunities, helping clients make confident and informed real estate decisions.
+                </p>
+              </div>
+            </div>
+
+            <div class="d-flex feature-h">
+              <span class="wrap-icon me-3">
+                <span class="icon-security"></span>
+              </span>
+              <div class="feature-text">
+                <h3 class="heading">Long-Term Relationships</h3>
+                <p class="text-black-50">
+                   We focus on building lasting relationships through trust, transparency, and exceptional customer service before, during, and after every transaction.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-8">
+            <h2 class="font-weight-bold heading text-primary mb-3">
+                Building Trust Through Real Estate Excellence
+            </h2>
+            <p class="text-black-50">
+                From residential homes to commercial investments, Golden Vision
+                continues to help clients discover exceptional property opportunities
+                across Abu Dhabi and the UAE.
+            </p>
+        </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+            <img src="{% static 'images/img_1.jpg' %}" alt="Image" class="img-fluid" />
+          </div>
+          <div class="col-md-4 mt-lg-5" data-aos="fade-up" data-aos-delay="100">
+            <img src="{% static 'images/img_3.jpg' %}" alt="Image" class="img-fluid" />
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <img src="{% static 'images/img_2.jpg' %}" alt="Image" class="img-fluid" />
+          </div>
+        </div>
+        <div class="row section-counter mt-5">
+          <div
+            class="col-6 col-sm-6 col-md-6 col-lg-3"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="counter-wrap mb-5 mb-lg-0">
+              <span class="number"
+                ><span class="countup text-primary">500</span></span
+              >
+              <span class="caption text-black-50">Successful Transactions</span>
+            </div>
+          </div>
+          <div
+            class="col-6 col-sm-6 col-md-6 col-lg-3"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <div class="counter-wrap mb-5 mb-lg-0">
+              <span class="number"
+                ><span class="countup text-primary">250</span></span
+              >
+              <span class="caption text-black-50">Properties Managed</span>
+            </div>
+          </div>
+          <div
+            class="col-6 col-sm-6 col-md-6 col-lg-3"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
+            <div class="counter-wrap mb-5 mb-lg-0">
+              <span class="number"
+                ><span class="countup text-primary">1000</span></span
+              >
+              <span class="caption text-black-50">Satisfied Clients</span>
+            </div>
+          </div>
+          <div
+            class="col-6 col-sm-6 col-md-6 col-lg-3"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
+            <div class="counter-wrap mb-5 mb-lg-0">
+              <span class="number"
+                ><span class="countup text-primary">10</span></span
+              >
+              <span class="caption text-black-50">Years of Experience</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section bg-light">
+      <div class="container">
+          <div class="row justify-content-center text-center mb-5">
+              <div class="col-lg-8">
+                  <h2 class="font-weight-bold heading text-primary mb-4">
+                      Our Vision & Mission
+                  </h2>
+
+                  <p class="text-black-50 mb-4">
+                      Our vision is to become one of the most trusted real estate
+                      companies in Abu Dhabi by delivering exceptional service,
+                      professional expertise, and long-term value to our clients.
+                  </p>
+
+                  <p class="text-black-50">
+                      Our mission is to simplify the property journey by connecting
+                      buyers, sellers, investors, and businesses with opportunities
+                      that match their goals while maintaining the highest standards
+                      of integrity, transparency, and customer satisfaction.
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+
+    {% endblock %}

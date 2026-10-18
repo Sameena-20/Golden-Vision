@@ -1,0 +1,83 @@
+{%extends 'public/base.html'%}
+
+{%load static%}
+
+
+{%block title%}Verify OTP{%endblock%}
+
+{%block content%}
+
+    <div
+      class="hero page-inner overlay"
+      style="background-image: url('/static/images/login_img.jpeg')"
+    >
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-9 text-center mt-5">
+            <h1 class="heading" data-aos="fade-up">Verify OTP</h1>
+
+            <nav
+              aria-label="breadcrumb"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <ol class="breadcrumb text-center justify-content-center">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                <li
+                  class="breadcrumb-item active text-white-50"
+                  aria-current="page"
+                >
+                  Verify OTP
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="login-container">
+        <div class="login-card">
+            <img src="{% static 'images/verify_otp.jpeg' %}" alt="Lock" class="lock-icon">
+            <h3>Verify OTP</h3>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="messages">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="otp" class="form-label">OTP</label>
+                    <input type="text" name="otp" id="otp" class="form-control" placeholder="Enter the OTP sent to your email" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Verify OTP</button>
+            </form> -->
+
+            <form method="POST" action="{% url 'verify_otp' %}">
+                {% csrf_token %}
+
+                <input type="hidden" name="email" value="{{ email }}">
+                <input type="hidden" name="otp" value="{{ otp }}">
+
+                <div class="mb-3">
+                    <label for="otp1" class="form-label">OTP</label>
+                    <input type="text"
+                        name="otp1"
+                        id="otp1"
+                        class="form-control"
+                        placeholder="Enter the OTP sent to your email"
+                        required>
+                </div>
+
+                <br><br><br>
+
+                <button type="submit" class="btn btn-primary w-100">
+                    Verify OTP
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

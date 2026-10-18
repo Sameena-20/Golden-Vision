@@ -1,0 +1,86 @@
+{% extends 'admin/admin_base.html' %}
+{% load static %}
+
+{% block title %}Assign Inquiry{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<div class="hero page-inner overlay" style="background-image: url('/static/images/admin_home.jpeg')">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-9 text-center mt-5">
+                <h1 class="heading text-white">Assign Inquiry</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add spacing so the card does not touch the hero -->
+<div class="my-5"></div>
+
+<!-- Main Section -->
+<div class="section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+
+                <div class="card shadow-lg p-5 rounded-4 border-0">
+                    <h3 class="text-center mb-4 text-primary fw-bold">Assign Inquiry</h3>
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-warning text-center">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="POST" action="{% url 'assign_inquiry' form.id %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="row">
+
+                            <p class="text-center text-muted mb-4">
+                                Select an agent to handle this customer inquiry. Once assigned,
+                                the selected agent will be able to view the inquiry details and
+                                send a reply directly to the customer.
+                            </p>
+
+                            <div class="alert alert-info">
+                                <strong>Inquiry:</strong> {{ form.inquiry_code }} <br>
+                                <strong>Customer:</strong> {{ form.full_name }} <br>
+                                <strong>Subject:</strong> {{ form.subject }}
+                            </div>
+
+                            <!-- Role -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Assign To Agent</label>
+                                <select name="assigned_to" class="form-select" required>
+
+                                    <option value="">Select Agent</option>
+
+                                        {% for agent in agents %}
+                                            <option value="{{ agent.id }}">
+                                                {{ agent.name }}
+                                            </option>
+                                        {% endfor %}
+
+                                    </select>
+                            </div>
+
+                            
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary px-5 py-2">Submit</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{%extends 'admin/admin_base.html'%}
+
+{%load static%}
+
+
+{%block title%}Manage Agents{%endblock%}
+
+{% block content %}
+
+<div class="hero page-inner overlay" style="background-image: url('/static/images/admin_home.jpeg')">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-9 text-center mt-5">
+                <h1 class="heading text-white">Manage Agents</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section py-5">
+    <div class="container">
+
+        <!-- Search Bar -->
+        <div class="card shadow p-4 rounded-4 mb-4">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-warning text-center">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            <form method="POST" class="row g-3">
+                {% csrf_token %}
+                <div class="col-md-10">
+                    <input type="text" name="search_content" class="form-control" placeholder="Search agent by name, email, phone number...">
+                </div>
+                <div class="col-md-2 d-grid">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Agents Table -->
+        <div class="card shadow-lg p-4 rounded-4">
+            {% if emp %}
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>Full Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Department</th>
+                                <th>Designation</th>
+                                <th>Username</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for i in emp %}
+                            <tr>
+                                <td>{{ i.name }}</td>
+                                <td>{{ i.phone }}</td>
+                                <td>{{ i.email }}</td>
+                                <td>{{ i.role }}</td>
+                                <td>{{ i.department }}</td>
+                                <td>{{ i.designation }}</td>
+                                <td>{{ i.username }}</td>
+
+                                <td class="text-center">
+                                    <a href="{% url 'edit_agent' i.id %}" class="btn btn-sm btn-outline-primary me-2">
+                                        Edit
+                                    </a>
+                                    <a href="{% url 'delete_agent' i.id %}" class="btn btn-sm btn-outline-danger">
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            {% else %}
+                <p class="text-center text-muted fs-5">No agent found</p>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
