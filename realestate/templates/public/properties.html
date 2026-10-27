@@ -8,140 +8,265 @@
 
 {%block content%}
 
-    <div
-      class="hero page-inner overlay"
-      style="background-image: url('/static/images/hero_bg_1.jpg')"
-    >
-      <div class="container">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-lg-9 text-center mt-5">
-            <h1 class="heading" data-aos="fade-up">Properties</h1>
+<div class="hero page-inner overlay" style="background-image: url('/static/images/hero_bg_1.jpg')">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-9 text-center mt-5">
+        <h1 class="heading" data-aos="fade-up">Properties</h1>
 
-            <nav
-              aria-label="breadcrumb"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <ol class="breadcrumb text-center justify-content-center">
-                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
-                <li
-                  class="breadcrumb-item active text-white-50"
-                  aria-current="page"
-                >
-                  Properties
-                </li>
-              </ol>
-            </nav>
-          </div>
-        </div>
+        <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
+          <ol class="breadcrumb text-center justify-content-center">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+            <li class="breadcrumb-item active text-white-50" aria-current="page">
+              Properties
+            </li>
+          </ol>
+        </nav>
       </div>
     </div>
+  </div>
+</div>
 
-    <div class="section">
-      <div class="container">
-        <div class="row mb-5 align-items-center">
-          <div class="col-lg-6 text-center mx-auto">
-            <h2 class="font-weight-bold text-primary heading">
-              Featured Properties
-            </h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="property-slider-wrap">
-              <div class="property-slider">
-                {% for property in featured_properties %}
-                <div class="property-item">
-                  {% with property.images.all|first as main_image %}
-                  <a href="{% url 'property_details' property.id %}" class="img">
-                    {% if main_image %}
-                        <img
-                            src="{{ main_image.image.url }}"
-                            alt="{{ property.title }}"
-                            class="img-fluid"
-                        />
+<div class="section">
+  <div class="container">
+    <div class="row mb-5 align-items-center">
+      <div class="col-lg-6 text-center mx-auto">
+        <h2 class="font-weight-bold text-primary heading">
+          Featured Properties
+        </h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="property-slider-wrap">
+          <div class="property-slider">
+            {% for property in featured_properties %}
+            <div class="property-item">
+              {% with property.images.all|first as main_image %}
+              <a href="{% url 'property_details' property.id %}" class="img">
+                {% if main_image %}
+                <img src="{{ main_image.image.url }}" alt="{{ property.title }}" class="img-fluid" />
+                {% else %}
+                <img src="{% static 'images/img_1.jpg' %}" alt="{{ property.title }}" class="img-fluid" />
+                {% endif %}
+              </a>
+              {% endwith %}
+
+              <div class="property-content">
+                <div class="price mb-2">
+                  <span>{% if property.price %}
+                    AED {{ property.price|floatformat:0|intcomma }}
                     {% else %}
-                        <img
-                            src="{% static 'images/img_1.jpg' %}"
-                            alt="{{ property.title }}"
-                            class="img-fluid"
-                        />
+                    Price on request
                     {% endif %}
-                </a>
-                {% endwith %}
-
-                  <div class="property-content">
-                    <div class="price mb-2">
-                      <span>{% if property.price %}
-                                AED {{ property.price|floatformat:0|intcomma }}
-                            {% else %}
-                                Price on request
-                            {% endif %}
-                        </span></div>
-                    <div>
-                      <span class="d-block mb-2 text-black-50">
-                        {{ property.location }}
-                      </span>
-                      <span class="city d-block mb-3">{{ property.title }}</span>
-
-                      <div class="specs d-flex mb-4">
-                        <span class="d-block d-flex align-items-center me-3">
-                          <span class="icon-bed me-2"></span>
-                          <span class="caption">{{ property.bedrooms|default:"—" }} beds</span>
-                        </span>
-                        <span class="d-block d-flex align-items-center">
-                          <span class="icon-bath me-2"></span>
-                          <span class="caption">{{ property.bathrooms|default:"—" }} baths</span>
-                        </span>
-                      </div>
-
-                      <a
-                        href="{% url 'property_details' property.id %}"
-                        class="btn btn-primary py-2 px-3"
-                        >See details</a
-                      >
-                    </div>
-                  </div>
+                  </span>
                 </div>
-                {% empty %}
-                    <div class="col-12 text-center py-5">
-                        <p class="text-muted">
-                            No featured properties are available at the moment.
-                        </p>
-                    </div>
-                {% endfor %}
-                <!-- .item -->          
-                
-              </div>
+                <div>
+                  <span class="d-block mb-2 text-black-50">
+                    {{ property.location }}
+                  </span>
+                  <span class="city d-block mb-3">{{ property.title }}</span>
 
-              <div
-                id="property-nav"
-                class="controls"
-                tabindex="0"
-                aria-label="Carousel Navigation"
-              >
-                <span
-                  class="prev"
-                  data-controls="prev"
-                  aria-controls="property"
-                  tabindex="-1"
-                  >Prev</span
-                >
-                <span
-                  class="next"
-                  data-controls="next"
-                  aria-controls="property"
-                  tabindex="-1"
-                  >Next</span
-                >
+                  <div class="specs d-flex mb-4">
+                    <span class="d-block d-flex align-items-center me-3">
+                      <span class="icon-bed me-2"></span>
+                      <span class="caption">{{ property.bedrooms|default:"—" }} beds</span>
+                    </span>
+                    <span class="d-block d-flex align-items-center">
+                      <span class="icon-bath me-2"></span>
+                      <span class="caption">{{ property.bathrooms|default:"—" }} baths</span>
+                    </span>
+                  </div>
+
+                  <a href="{% url 'property_details' property.id %}" class="btn btn-primary py-2 px-3">See details</a>
+                </div>
               </div>
             </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+              <p class="text-muted">
+                No featured properties are available at the moment.
+              </p>
+            </div>
+            {% endfor %}
+            <!-- .item -->
+
+          </div>
+
+          <div id="property-nav" class="controls" tabindex="0" aria-label="Carousel Navigation">
+            <span class="prev" data-controls="prev" aria-controls="property" tabindex="-1">Prev</span>
+            <span class="next" data-controls="next" aria-controls="property" tabindex="-1">Next</span>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
-    <div class="section section-properties">
+<div class="section section-properties">
+
+  
+<div class="container mb-5">
+  <div class="card shadow-sm border-0 p-4">
+    <h3 class="text-primary mb-4">Advanced Property Search</h3>
+
+    <form method="GET" action="{% url 'properties' %}">
+      <div class="row g-3">
+
+        <div class="col-md-4">
+          <label for="location" class="form-label">Location</label>
+          <input
+            type="text"
+            name="location"
+            id="location"
+            class="form-control"
+            placeholder="Enter area or location"
+            value="{{ search_values.location }}"
+          >
+        </div>
+
+        <div class="col-md-4">
+          <label for="category" class="form-label">Property Category</label>
+          <select name="category" id="category" class="form-select">
+            <option value="">All Categories</option>
+            {% for cat in categories %}
+              <option value="{{ cat.id }}"
+                {% if search_values.category == cat.id|stringformat:"s" %}selected{% endif %}>
+                {{ cat.category_name }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label for="property_type" class="form-label">Purpose</label>
+          <select name="property_type" id="property_type" class="form-select">
+            <option value="">Sale or Rent</option>
+            <option value="Sale" {% if search_values.property_type == 'Sale' %}selected{% endif %}>For Sale</option>
+            <option value="Rent" {% if search_values.property_type == 'Rent' %}selected{% endif %}>For Rent</option>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label for="min_price" class="form-label">Minimum Price (AED)</label>
+          <input
+            type="number"
+            name="min_price"
+            id="min_price"
+            class="form-control"
+            min="0"
+            step="0.01"
+            placeholder="Minimum"
+            value="{{ search_values.min_price }}"
+          >
+        </div>
+
+        <div class="col-md-3">
+          <label for="max_price" class="form-label">Maximum Price (AED)</label>
+          <input
+            type="number"
+            name="max_price"
+            id="max_price"
+            class="form-control"
+            min="0"
+            step="0.01"
+            placeholder="Maximum"
+            value="{{ search_values.max_price }}"
+          >
+        </div>
+
+        <div class="col-md-3">
+          <label for="bedrooms" class="form-label">Minimum Bedrooms</label>
+          <select name="bedrooms" id="bedrooms" class="form-select">
+            <option value="">Any</option>
+            {% for number in "123456" %}
+              <option value="{{ number }}"
+                {% if search_values.bedrooms == number %}selected{% endif %}>
+                {{ number }}+ Bedrooms
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label for="min_area" class="form-label">Minimum Area (sq. ft.)</label>
+          <input
+            type="number"
+            name="min_area"
+            id="min_area"
+            class="form-control"
+            min="0"
+            step="0.01"
+            placeholder="Minimum area"
+            value="{{ search_values.min_area }}"
+          >
+        </div>
+
+        <div class="col-12 d-flex flex-wrap gap-2 mt-4">
+          <button type="submit" class="btn btn-primary px-4">
+            Search Properties
+          </button>
+          <a href="{% url 'properties' %}" class="btn btn-outline-secondary px-4">
+            Clear Filters
+          </a>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div class="container mb-4">
+  <div class="row align-items-center justify-content-between">
+    <div class="col-md-6 mb-3 mb-md-0">
+      <h3 class="heading text-primary mb-0">All Properties</h3>
+    </div>
+
+    <div class="col-md-4 col-lg-3">
+      <form method="GET" id="sortForm">
+        
+        <input type="hidden" name="location" value="{{ search_values.location }}">
+        <input type="hidden" name="category" value="{{ search_values.category }}">
+        <input type="hidden" name="property_type" value="{{ search_values.property_type }}">
+        <input type="hidden" name="min_price" value="{{ search_values.min_price }}">
+        <input type="hidden" name="max_price" value="{{ search_values.max_price }}">
+        <input type="hidden" name="bedrooms" value="{{ search_values.bedrooms }}">
+        <input type="hidden" name="min_area" value="{{ search_values.min_area }}">
+
+        <label for="sort" class="form-label">Sort properties by</label>
+        <select
+          name="sort"
+          id="sort"
+          class="form-select"
+          onchange="this.form.submit()"
+        >
+          <option value="newest"
+            {% if current_sort == 'newest' %}selected{% endif %}>
+            Newest First
+          </option>
+          <option value="price_low"
+            {% if current_sort == 'price_low' %}selected{% endif %}>
+            Price: Low to High
+          </option>
+          <option value="price_high"
+            {% if current_sort == 'price_high' %}selected{% endif %}>
+            Price: High to Low
+          </option>
+          <option value="area_low"
+            {% if current_sort == 'area_low' %}selected{% endif %}>
+            Area: Smallest First
+          </option>
+          <option value="area_high"
+            {% if current_sort == 'area_high' %}selected{% endif %}>
+            Area: Largest First
+          </option>
+        </select>
+      </form>
+    </div>
+  </div>
+</div>
+
   <div class="container">
     <div class="row">
 
@@ -152,9 +277,9 @@
           {% with property.images.all|first as main_image %}
           <a href="{% url 'property_details' property.id %}" class="img">
             {% if main_image %}
-              <img src="{{ main_image.image.url }}" alt="{{ property.title }}" class="img-fluid" />
+            <img src="{{ main_image.image.url }}" alt="{{ property.title }}" class="img-fluid" />
             {% else %}
-              <img src="{% static 'images/img_1.jpg' %}" alt="{{ property.title }}" class="img-fluid" />
+            <img src="{% static 'images/img_1.jpg' %}" alt="{{ property.title }}" class="img-fluid" />
             {% endif %}
           </a>
           {% endwith %}
@@ -164,9 +289,9 @@
             <div class="price mb-2">
               <span>
                 {% if property.price %}
-                  AED {{ property.price|floatformat:0|intcomma }}
+                AED {{ property.price|floatformat:0|intcomma }}
                 {% else %}
-                  Price on request
+                Price on request
                 {% endif %}
               </span>
             </div>
@@ -195,13 +320,13 @@
         </div>
       </div>
       {% empty %}
-        <div class="col-12 text-center py-5">
-          <p class="text-muted">No properties available at the moment.</p>
-        </div>
+      <div class="col-12 text-center py-5">
+        <p class="text-muted">No properties available at the moment.</p>
+      </div>
       {% endfor %}
 
     </div>
   </div>
 </div>
 
-    {% endblock %}
+{% endblock %}

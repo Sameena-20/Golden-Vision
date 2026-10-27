@@ -90,20 +90,165 @@ def careers(request):
 #     featured_properties = Property.objects.filter(featured_property=True,status='Available').prefetch_related('images')
 #     return render(request, 'public/properties.html', {'featured_properties': featured_properties})
 
+# def properties(request):
+#     featured_properties = Property.objects.filter(
+#         featured_property=True,
+#         status='Available'
+#     ).prefetch_related('images')
+
+#     all_properties = Property.objects.filter(
+#         status='Available'
+#     ).prefetch_related('images')
+
+#     return render(request, 'public/properties.html', {
+#         'featured_properties': featured_properties,
+#         'all_properties': all_properties,
+#     })
+
+
+
+# def properties(request):
+#     featured_properties = Property.objects.filter(
+#         featured_property=True,
+#         status='Available'
+#     ).prefetch_related('images')
+
+#     all_properties = Property.objects.filter(
+#         status='Available'
+#     ).prefetch_related('images')
+
+#     # Get the selected sorting option
+#     current_sort = request.GET.get('sort', 'newest')
+
+#     # Apply sorting to All Properties
+#     sort_options = {
+#         'newest': '-created_at',
+#         'price_low': 'price',
+#         'price_high': '-price',
+#         'area_low': 'area_sqft',
+#         'area_high': '-area_sqft',
+#     }
+
+#     # Use the default sort if an invalid option is submitted
+#     if current_sort not in sort_options:
+#         current_sort = 'newest'
+
+#     all_properties = all_properties.order_by(
+#         sort_options[current_sort],
+#         '-id'
+#     ).prefetch_related('images')
+
+#     return render(request, 'public/properties.html', {
+#         'featured_properties': featured_properties,
+#         'all_properties': all_properties,
+#         'current_sort': current_sort,
+#     })
+
+
+
+
 def properties(request):
     featured_properties = Property.objects.filter(
         featured_property=True,
         status='Available'
     ).prefetch_related('images')
 
+    # Start with all available properties
     all_properties = Property.objects.filter(
         status='Available'
+    )
+
+    # Advanced search filters
+    location = request.GET.get('location', '').strip()
+    category = request.GET.get('category', '').strip()
+    property_type = request.GET.get('property_type', '').strip()
+    min_price = request.GET.get('min_price', '').strip()
+    max_price = request.GET.get('max_price', '').strip()
+    bedrooms = request.GET.get('bedrooms', '').strip()
+    min_area = request.GET.get('min_area', '').strip()
+
+    if location:
+        all_properties = all_properties.filter(
+            location__icontains=location
+        )
+
+    if category.isdigit():
+        all_properties = all_properties.filter(
+            category_id=int(category)
+        )
+
+    if property_type in ['Sale', 'Rent']:
+        all_properties = all_properties.filter(
+            property_type=property_type
+        )
+
+    # Validate numeric filters before applying them
+    from decimal import Decimal, InvalidOperation
+
+    try:
+        if min_price:
+            value = Decimal(min_price)
+            if value >= 0:
+                all_properties = all_properties.filter(price__gte=value)
+    except InvalidOperation:
+        pass
+
+    try:
+        if max_price:
+            value = Decimal(max_price)
+            if value >= 0:
+                all_properties = all_properties.filter(price__lte=value)
+    except InvalidOperation:
+        pass
+
+    if bedrooms.isdigit():
+        all_properties = all_properties.filter(
+            bedrooms__gte=int(bedrooms)
+        )
+
+    try:
+        if min_area:
+            value = Decimal(min_area)
+            if value >= 0:
+                all_properties = all_properties.filter(area_sqft__gte=value)
+    except InvalidOperation:
+        pass
+
+    # Sorting
+    current_sort = request.GET.get('sort', 'newest')
+
+    sort_options = {
+        'newest': '-created_at',
+        'price_low': 'price',
+        'price_high': '-price',
+        'area_low': 'area_sqft',
+        'area_high': '-area_sqft',
+    }
+
+    if current_sort not in sort_options:
+        current_sort = 'newest'
+
+    all_properties = all_properties.order_by(
+        sort_options[current_sort],
+        '-id'
     ).prefetch_related('images')
 
     return render(request, 'public/properties.html', {
         'featured_properties': featured_properties,
         'all_properties': all_properties,
+        'current_sort': current_sort,
+        'categories': PropertyCategory.objects.all(),
+        'search_values': {
+            'location': location,
+            'category': category,
+            'property_type': property_type,
+            'min_price': min_price,
+            'max_price': max_price,
+            'bedrooms': bedrooms,
+            'min_area': min_area,
+        },
     })
+
 
 
 

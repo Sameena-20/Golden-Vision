@@ -15,7 +15,6 @@ urlpatterns = [
     path('password_reset/', views.password_reset_request, name='password_reset'),
     path('verify_otp/', views.verify_otp, name='verify_otp'),
     path('new_password/', views.set_new_password, name='new_password'),
-    # path('register/', views.register, name='register'),
     path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
     path('agent_dashboard/', views.agent_dashboard, name='agent_dashboard'),
     path('logout/', views.logout_view, name='logout'),
